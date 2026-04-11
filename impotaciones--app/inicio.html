@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bienvenidos | Importaciones GT</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/estilos.css">
+  
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: var(--bg-color);
+      font-family: var(--font-family);
+    }
+    
+    .landing-nav {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      padding: 20px 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 100;
+    }
+
+    .landing-brand {
+      color: var(--text-dark);
+      font-weight: 800;
+      font-size: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .landing-links {
+      display: flex;
+      gap: 15px;
+    }
+
+    .landing-links a {
+      text-decoration: none;
+      font-weight: 600;
+      padding: 12px 28px;
+      border-radius: 50px;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .link-comprar {
+      background: var(--primary-color);
+      color: white;
+      box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+    }
+
+    .link-comprar:hover {
+      background: var(--secondary-color);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(37, 99, 235, 0.4);
+    }
+
+    .link-admin {
+      background: transparent;
+      color: var(--text-dark);
+      border: 2px solid var(--border, #E5E7EB);
+    }
+
+    .link-admin:hover {
+      background: var(--text-dark);
+      color: white;
+      border-color: var(--text-dark);
+    }
+
+    .landing-hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 100px 20px 0; /* Padding top for the fixed nav */
+      background: radial-gradient(circle at center, #ffffff 0%, var(--bg-color) 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .landing-decoration-1 {
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      background: var(--primary-color);
+      filter: blur(180px);
+      border-radius: 50%;
+      opacity: 0.15;
+      top: -100px;
+      right: -100px;
+      z-index: 0;
+      animation: float 8s ease-in-out infinite;
+    }
+
+    .landing-decoration-2 {
+      position: absolute;
+      width: 400px;
+      height: 400px;
+      background: var(--accent-color);
+      filter: blur(150px);
+      border-radius: 50%;
+      opacity: 0.1;
+      bottom: -50px;
+      left: -100px;
+      z-index: 0;
+      animation: float 6s ease-in-out infinite reverse;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0px) scale(1); }
+      50% { transform: translateY(-30px) scale(1.05); }
+      100% { transform: translateY(0px) scale(1); }
+    }
+
+    .landing-content {
+      position: relative;
+      z-index: 10;
+      max-width: 850px;
+    }
+
+    .landing-content h1 {
+      font-size: 4.5rem;
+      font-weight: 800;
+      color: var(--text-dark);
+      line-height: 1.1;
+      margin-bottom: 25px;
+      letter-spacing: -2px;
+    }
+
+    .landing-content h1 span {
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .landing-content p {
+      font-size: 1.3rem;
+      color: var(--text-muted);
+      margin-bottom: 45px;
+      line-height: 1.7;
+    }
+
+    .btn-large {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 18px 45px;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: white;
+      background: var(--primary-color);
+      border-radius: 50px;
+      text-decoration: none;
+      box-shadow: 0 10px 25px rgba(37, 99, 235, 0.4);
+      transition: all 0.3s;
+    }
+
+    .btn-large:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(37, 99, 235, 0.5);
+    }
+    
+    /* Responsividad */
+    @media (max-width: 768px) {
+      .landing-nav {
+        flex-direction: column;
+        gap: 20px;
+        position: relative;
+      }
+      .landing-content h1 {
+        font-size: 3rem;
+      }
+      .landing-links {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="landing-nav">
+    <div class="landing-brand">
+      <i class="fa-solid fa-plane-departure" style="color: var(--primary-color);"></i> Importaciones GT
+    </div>
+    <div class="landing-links">
+      <a href="INDEX.HTML" class="link-comprar"><i class="fa-solid fa-bag-shopping"></i> Comprar</a>
+      <a href="admin.html" class="link-admin"><i class="fa-solid fa-user-shield"></i> Administrador</a>
+    </div>
+  </nav>
+
+  <main class="landing-hero">
+    <div class="landing-decoration-1"></div>
+    <div class="landing-decoration-2"></div>
+    
+    <div class="landing-content">
+      <h1>Traemos el mundo <span>directo a tu puerta</span></h1>
+      <p>La forma más moderna, rápida y segura de comprar productos internacionales. Explora nuestro catálogo y recibe lo que necesitas sin complicaciones.</p>
+      <a href="INDEX.HTML" class="btn-large">Explorar Tienda <i class="fa-solid fa-arrow-right"></i></a>
+    </div>
+  </main>
+
+</body>
+</html>
