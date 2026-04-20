@@ -1,24 +1,26 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Bienvenidos | Importaciones GT</title>
-  
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="css/estilos.css">
-  
+
   <style>
     body {
       margin: 0;
       padding: 0;
       background: var(--bg-color);
       font-family: var(--font-family);
+      overflow-x: hidden;
     }
-    
+
     .landing-nav {
       position: absolute;
       top: 0;
@@ -57,21 +59,21 @@
     }
 
     .link-comprar {
-      background: var(--primary-color);
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
       color: white;
       box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
     }
 
     .link-comprar:hover {
-      background: var(--secondary-color);
       transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(37, 99, 235, 0.4);
+      box-shadow: 0 8px 20px rgba(37, 99, 235, 0.5);
     }
 
     .link-admin {
-      background: transparent;
+      background: rgba(255, 255, 255, 0.5);
+      backdrop-filter: blur(5px);
       color: var(--text-dark);
-      border: 2px solid var(--border, #E5E7EB);
+      border: 2px solid rgba(0, 0, 0, 0.1);
     }
 
     .link-admin:hover {
@@ -85,70 +87,91 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      text-align: center;
-      padding: 100px 20px 0; /* Padding top for the fixed nav */
-      background: radial-gradient(circle at center, #ffffff 0%, var(--bg-color) 100%);
+      padding: 120px 5% 50px;
+      background: radial-gradient(circle at top right, #e0e7ff 0%, var(--bg-color) 60%);
       position: relative;
       overflow: hidden;
     }
-    
+
     .landing-decoration-1 {
       position: absolute;
-      width: 500px;
-      height: 500px;
+      width: 600px;
+      height: 600px;
       background: var(--primary-color);
-      filter: blur(180px);
+      filter: blur(200px);
       border-radius: 50%;
       opacity: 0.15;
       top: -100px;
-      right: -100px;
+      right: -200px;
       z-index: 0;
       animation: float 8s ease-in-out infinite;
     }
 
     .landing-decoration-2 {
       position: absolute;
-      width: 400px;
-      height: 400px;
+      width: 500px;
+      height: 500px;
       background: var(--accent-color);
-      filter: blur(150px);
+      filter: blur(180px);
       border-radius: 50%;
       opacity: 0.1;
-      bottom: -50px;
-      left: -100px;
+      bottom: -100px;
+      left: -150px;
       z-index: 0;
       animation: float 6s ease-in-out infinite reverse;
     }
 
     @keyframes float {
-      0% { transform: translateY(0px) scale(1); }
-      50% { transform: translateY(-30px) scale(1.05); }
-      100% { transform: translateY(0px) scale(1); }
+      0% {
+        transform: translateY(0px) scale(1);
+      }
+
+      50% {
+        transform: translateY(-40px) scale(1.05);
+      }
+
+      100% {
+        transform: translateY(0px) scale(1);
+      }
     }
 
     .landing-content {
       position: relative;
       z-index: 10;
-      max-width: 850px;
+      width: 100%;
+      max-width: 1200px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 50px;
+      flex-wrap: wrap;
+    }
+
+    .landing-text {
+      flex: 1;
+      min-width: 320px;
+      text-align: left;
     }
 
     .landing-content h1 {
-      font-size: 4.5rem;
+      font-size: 4rem;
       font-weight: 800;
       color: var(--text-dark);
       line-height: 1.1;
       margin-bottom: 25px;
-      letter-spacing: -2px;
+      letter-spacing: -1.5px;
     }
 
     .landing-content h1 span {
       background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
       -webkit-background-clip: text;
+      background-clip: text;
       -webkit-text-fill-color: transparent;
+      color: transparent;
     }
 
     .landing-content p {
-      font-size: 1.3rem;
+      font-size: 1.25rem;
       color: var(--text-muted);
       margin-bottom: 45px;
       line-height: 1.7;
@@ -157,40 +180,90 @@
     .btn-large {
       display: inline-flex;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
       padding: 18px 45px;
       font-size: 1.2rem;
-      font-weight: 600;
+      font-weight: 700;
       color: white;
-      background: var(--primary-color);
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
       border-radius: 50px;
       text-decoration: none;
       box-shadow: 0 10px 25px rgba(37, 99, 235, 0.4);
-      transition: all 0.3s;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
 
     .btn-large:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 15px 30px rgba(37, 99, 235, 0.5);
+      transform: translateY(-5px) scale(1.02);
+      box-shadow: 0 15px 35px rgba(37, 99, 235, 0.5);
     }
-    
+
+    .landing-video-wrapper {
+      flex: 1;
+      min-width: 320px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .video-container {
+      position: relative;
+      width: 100%;
+      max-width: 500px;
+      border-radius: 30px;
+      overflow: hidden;
+      box-shadow: 0 25px 50px -12px rgba(37, 99, 235, 0.4);
+      border: 4px solid rgba(255, 255, 255, 0.8);
+      transform: perspective(1000px) rotateY(-5deg) translateY(0);
+      transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      background: #0F172A;
+    }
+
+    .video-container:hover {
+      transform: perspective(1000px) rotateY(0deg) translateY(-10px);
+      box-shadow: 0 35px 60px -15px rgba(37, 99, 235, 0.6);
+      border-color: #fff;
+    }
+
+    .video-container video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
     /* Responsividad */
     @media (max-width: 768px) {
       .landing-nav {
         flex-direction: column;
         gap: 20px;
         position: relative;
+        padding-top: 30px;
       }
+
+      .landing-hero {
+        padding-top: 40px;
+      }
+
       .landing-content h1 {
         font-size: 3rem;
+        text-align: center;
       }
+
+      .landing-text {
+        text-align: center;
+      }
+
       .landing-links {
         width: 100%;
         justify-content: center;
       }
+
+      .video-container {
+        transform: none;
+      }
     }
   </style>
 </head>
+
 <body>
 
   <nav class="landing-nav">
@@ -199,20 +272,37 @@
     </div>
     <div class="landing-links">
       <a href="INDEX.HTML" class="link-comprar"><i class="fa-solid fa-bag-shopping"></i> Comprar</a>
-      <a href="admin.html" class="link-admin"><i class="fa-solid fa-user-shield"></i> Administrador</a>
+      <a href="admin.html" class="link-admin"><i class="fa-solid fa-user-shield"></i> Admin</a>
     </div>
   </nav>
 
   <main class="landing-hero">
     <div class="landing-decoration-1"></div>
     <div class="landing-decoration-2"></div>
-    
+
     <div class="landing-content">
-      <h1>Traemos el mundo <span>directo a tu puerta</span></h1>
-      <p>La forma más moderna, rápida y segura de comprar productos internacionales. Explora nuestro catálogo y recibe lo que necesitas sin complicaciones.</p>
-      <a href="INDEX.HTML" class="btn-large">Explorar Tienda <i class="fa-solid fa-arrow-right"></i></a>
+      <div class="landing-text">
+        <h1>Traemos el mundo <span>directo a tu puerta</span></h1>
+        <p>La forma más moderna, rápida y segura de comprar productos internacionales. Explora nuestro catálogo y recibe
+          lo que necesitas sin complicaciones.</p>
+        <a href="INDEX.HTML" class="btn-large">Explorar Tienda <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <div class="landing-video-wrapper">
+        <div class="video-container">
+          <!-- TODO: Puedes reemplazar tu_video_aqui.mp4 por el nombre de tu propio video -->
+          <!-- O dejar este de demostración temporal -->
+          <video autoplay loop muted playsinline>
+            <source
+              src="https://assets.mixkit.co/videos/preview/mixkit-global-logistics-and-cargo-transport-concept-31633-large.mp4"
+              type="video/mp4">
+            Tu navegador no soporta el video.
+          </video>
+        </div>
+      </div>
     </div>
   </main>
 
 </body>
+
 </html>

@@ -29,35 +29,92 @@ function agregarAlCarrito(idProducto) {
   });
 }
 
-function solicitarCotizacionLink() {
-  verificarAutenticacion(() => {
+let cotizacionPendiente = null;
+
+async function solicitarCotizacionLink() {
+  verificarAutenticacion(async () => {
     const input = document.getElementById("link-cotizacion");
+    const btn = document.getElementById("btn-cotizar");
+    const previewContainer = document.getElementById("preview-container");
     const url = input.value.trim();
 
     if (!url || !url.startsWith("http")) {
-      alert("Por favor inserta un enlace válido (asegúrate que comience con http:// o https://).");
+      alert("Por favor inserta un enlace válido.");
       return;
     }
 
-    const carrito = obtenerCarrito();
-    const productoLink = {
-      id: Date.now(),
-      nombre: "Cotización Especial (URL)",
-      descripcion: url,
-      precio: 0,
-      esLinkEspecial: true
-    };
+    // Estado de carga
+    const originalBtnText = btn.innerHTML;
+    btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Robot Pensando...';
+    btn.disabled = true;
 
-    carrito.push(productoLink);
-    guardarCarrito(carrito);
+    try {
+      // 1. Llamar a nuestro servidor local
+      const response = await fetch(`https://importacionesgt.onrender.com/api/amazon-preview?url=${encodeURIComponent(url)}`);
+      
+      if (!response.ok) {
+        throw new Error('Servidor no respondió correctamente');
+      }
 
-    alert("¡Enlace añadido al carrito para cotización!");
-    input.value = "";
-    
-    if(document.getElementById("carrito").style.display !== 'none') {
-       mostrarCarrito();
+      const data = await response.json();
+
+      // 2. Mostrar la previsualización mágica
+      document.getElementById('preview-image').src = data.image;
+      document.getElementById('preview-title').innerText = data.title;
+      document.getElementById('preview-price').innerText = data.price;
+      
+      previewContainer.style.display = 'block';
+
+      // 3. Guardar temporalmente en memoria para pasarlo al carrito
+      cotizacionPendiente = {
+        id: Date.now(),
+        nombre: "Cotización: " + data.title.split(' ').slice(0, 4).join(' '),
+        descripcion: url,
+        precio: 0,
+        esLinkEspecial: true,
+        imagenVirtual: data.image
+      };
+
+    } catch (error) {
+      console.error(error);
+      alert("No pudimos extraer los datos mágicamente. Asegúrate de tener encendido el Servidor Node (node index.js). Por ahora, igual puedes añadirlo al carrito manualmente haciendo clic de nuevo.");
+      
+      // Fallback manual (si el server node está apagado)
+      cotizacionPendiente = {
+        id: Date.now(),
+        nombre: "Cotización Especial (URL)",
+        descripcion: url,
+        precio: 0,
+        esLinkEspecial: true
+      };
+      
+      previewContainer.style.display = 'none';
+      confirmarAgregadoAlCarritoDeCotizacion();
     }
+
+    // Restaurar botón
+    btn.innerHTML = originalBtnText;
+    btn.disabled = false;
   });
+}
+
+function confirmarAgregadoAlCarritoDeCotizacion() {
+  if (!cotizacionPendiente) return;
+
+  const carrito = obtenerCarrito();
+  carrito.push(cotizacionPendiente);
+  guardarCarrito(carrito);
+
+  alert("¡Producto añadido al carrito para cotización oficial!");
+  
+  // Limpiar
+  document.getElementById("link-cotizacion").value = "";
+  document.getElementById("preview-container").style.display = 'none';
+  cotizacionPendiente = null;
+  
+  if(document.getElementById("carrito").style.display !== 'none') {
+     mostrarCarrito();
+  }
 }
 
 // Mostrar carrito
