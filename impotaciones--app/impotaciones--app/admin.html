@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin | Importaciones GT</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/estilos.css">
+  <style>
+    .admin-form {
+      background: white;
+      padding: 30px;
+      border-radius: 20px;
+      margin-bottom: 30px;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    .admin-form h3 {
+      margin-top: 0;
+      color: var(--text-dark);
+    }
+    .admin-form input, .admin-form textarea {
+      padding: 12px;
+      border: 1px solid #E5E7EB;
+      border-radius: 8px;
+      font-family: var(--font-family);
+      font-size: 1rem;
+    }
+    .btn-admin {
+      background: var(--text-dark);
+    }
+    .btn-admin:hover {
+      background: #000;
+    }
+    .btn-delete {
+      background: #EF4444 !important;
+    }
+    .btn-delete:hover {
+      background: #DC2626 !important;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="hero" style="background: linear-gradient(135deg, #0F172A 0%, #334155 100%);">
+    <h1><i class="fa-solid fa-lock"></i> Panel de Administrador</h1>
+    <p>Gestiona los productos de tu catálogo y revisa los pedidos</p>
+  </header>
+
+  <nav class="main-nav">
+    <button id="btn-admin-productos" class="nav-btn active" onclick="mostrarVistaAdmin('admin-productos')"><i class="fa-solid fa-boxes-stacked"></i> Inventario</button>
+    <button id="btn-admin-pedidos" class="nav-btn" onclick="mostrarVistaAdmin('admin-pedidos')"><i class="fa-solid fa-file-invoice-dollar"></i> Ver Pedidos</button>
+  </nav>
+
+  <main class="container">
+    <section id="admin-productos">
+      <div class="admin-form" id="form-nuevo-producto">
+        <h3>Añadir Nuevo Producto</h3>
+        <input type="text" id="prod-nombre" placeholder="Nombre de tu producto (ej. iPhone 15 Pro)">
+        <textarea id="prod-desc" placeholder="Descripción detallada" rows="3"></textarea>
+        <input type="number" id="prod-precio" placeholder="Precio en Quetzales">
+        <button class="nav-btn active btn-admin" style="justify-content: center; width: 100%; border-radius: 12px;" onclick="guardarNuevoProducto()"><i class="fa-solid fa-plus"></i> Añadir a la tienda</button>
+      </div>
+
+      <h2>Tus Productos Actuales</h2>
+      <div id="lista-admin-productos" class="grid-layout"></div>
+    </section>
+
+    <section id="admin-pedidos" style="display:none;">
+      <h2>Todos los Pedidos Recibidos</h2>
+      <button class="nav-btn active btn-delete" style="margin-bottom: 20px; border-radius: 12px;" onclick="vaciarTodosLosPedidos()"><i class="fa-solid fa-trash"></i> Eliminar Historial de Pedidos</button>
+      <div id="lista-admin-pedidos" class="grid-layout"></div>
+    </section>
+  </main>
+
+  <script src="https://www.gstatic.com/firebasejs/10.8.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore-compat.js"></script>
+  <script src="js/firebase-config.js"></script>
+
+  <script src="js/productos.js"></script>
+  <script src="js/pedidos.js"></script>
+  <script src="js/admin.js"></script>
+
+</body>
+</html>

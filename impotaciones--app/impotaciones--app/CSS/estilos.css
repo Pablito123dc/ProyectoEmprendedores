@@ -1,0 +1,478 @@
+:root {
+  --primary-color: #2563EB;
+  --primary-color-hover: #1D4ED8;
+  --secondary-color: #3B82F6;
+  --accent-color: #F59E0B;
+  --bg-color: #F8FAFC;
+  --card-bg: rgba(255, 255, 255, 0.9); /* Transparencia para glassmorphism */
+  --text-dark: #0F172A;
+  --text-muted: #64748B;
+  --font-family: 'Outfit', sans-serif;
+  --glass-border: rgba(255, 255, 255, 0.5);
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--bg-color);
+  background-image: radial-gradient(circle at 100% 0%, #e0e7ff 0%, transparent 40%),
+                    radial-gradient(circle at 0% 100%, #e0e7ff 0%, transparent 40%);
+  background-attachment: fixed;
+  color: var(--text-dark);
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Animación para el Hero principal */
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.hero {
+  background: linear-gradient(-45deg, #0F172A, #1E3A8A, #2563EB, #3B82F6);
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
+  color: white;
+  padding: 80px 20px;
+  text-align: center;
+  box-shadow: 0 10px 30px -10px rgba(37, 99, 235, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Efecto de luz en el Hero */
+.hero::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: radial-gradient(circle at center, rgba(255,255,255,0.1) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.hero h1 {
+  font-size: 3.5rem;
+  font-weight: 800;
+  margin: 0 0 15px 0;
+  letter-spacing: -1.5px;
+  text-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.hero p {
+  font-size: 1.3rem;
+  font-weight: 300;
+  opacity: 0.95;
+  margin: 0;
+}
+
+/* Navbar con efecto Glassmorphism (Vidrio) */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  padding: 15px 5%;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--glass-border);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  transition: all 0.3s ease;
+}
+
+.navbar .brand {
+  font-size: 1.6rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.navbar .nav-links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.nav-btn {
+  padding: 10px 20px;
+  font-family: var(--font-family);
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--text-muted);
+  background: transparent;
+  border: 2px solid transparent;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nav-btn:hover {
+  background: rgba(37, 99, 235, 0.05);
+  color: var(--primary-color);
+  transform: translateY(-2px);
+}
+
+.nav-btn.active, .nav-btn:focus {
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  color: white;
+  box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 50px auto;
+  padding: 0 20px;
+  animation: fadeIn 0.8s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.grid-layout {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 35px;
+}
+
+/* Tarjetas de Producto Elegantes */
+.producto {
+  background: var(--card-bg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 30px 24px;
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.05);
+  text-align: center;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  border: 1px solid var(--glass-border);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+.producto::before {
+  content: "";
+  position: absolute;
+  top: 0;  left: 0;  right: 0;
+  height: 5px;
+  background: linear-gradient(90deg, var(--accent-color), #EF4444);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.producto:hover {
+  transform: translateY(-12px);
+  box-shadow: 0 25px 40px -10px rgba(37, 99, 235, 0.15);
+  border-color: rgba(37, 99, 235, 0.1);
+}
+
+.producto:hover::before {
+  opacity: 1;
+}
+
+.producto h3 {
+  font-size: 1.5rem;
+  color: var(--text-dark);
+  margin: 0 0 12px 0;
+  font-weight: 700;
+}
+
+.producto p {
+  color: var(--text-muted);
+  font-size: 1rem;
+  line-height: 1.6;
+  flex-grow: 1;
+}
+
+.producto .precio {
+  font-size: 2rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin: 25px 0;
+}
+
+.producto button, .btn-large {
+  width: 100%;
+  padding: 16px;
+  font-family: var(--font-family);
+  font-weight: 700;
+  font-size: 1.05rem;
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  color: white;
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 4px 15px rgba(37, 99, 235, 0.2);
+}
+
+.producto button:hover, .btn-large:hover {
+  transform: scale(1.03) translateY(-2px);
+  box-shadow: 0 8px 25px rgba(37, 99, 235, 0.35);
+}
+
+.btn-remove-item {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 40px !important;
+  height: 40px;
+  padding: 0 !important;
+  background: #FEF2F2 !important;
+  color: #EF4444 !important;
+  border: 1px solid #FEE2E2 !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 4px 10px rgba(239, 68, 68, 0.1);
+}
+
+.btn-remove-item:hover {
+  background: #EF4444 !important;
+  color: white !important;
+  transform: scale(1.15) rotate(90deg) !important;
+  box-shadow: 0 6px 15px rgba(239, 68, 68, 0.3);
+}
+
+.empty-state {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 80px 20px;
+  background: var(--card-bg);
+  backdrop-filter: blur(10px);
+  border-radius: 24px;
+  color: var(--text-muted);
+  font-size: 1.3rem;
+  border: 2px dashed #E2E8F0;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.02);
+}
+
+.carrito-summary {
+  grid-column: 1 / -1;
+  background: var(--card-bg);
+  padding: 40px;
+  border-radius: 24px;
+  text-align: center;
+  box-shadow: 0 15px 40px -10px rgba(0, 0, 0, 0.08);
+  border: 1px solid var(--glass-border);
+  margin-top: 30px;
+}
+
+.carrito-summary h3 {
+  font-size: 2.2rem;
+  color: var(--text-dark);
+  margin-bottom: 25px;
+}
+
+.carrito-summary button {
+  padding: 16px 32px;
+  font-family: var(--font-family);
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: white;
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+  margin: 10px;
+  transition: all 0.3s ease;
+}
+
+.btn-confirmar {
+  background: linear-gradient(135deg, #10B981, #059669);
+  box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+}
+
+.btn-confirmar:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4);
+}
+
+.btn-vaciar {
+  background: linear-gradient(135deg, #EF4444, #DC2626);
+  box-shadow: 0 4px 15px rgba(239, 68, 68, 0.3);
+}
+
+.btn-vaciar:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 8px 25px rgba(239, 68, 68, 0.4);
+}
+
+.tag-estado {
+  display: inline-block;
+  padding: 8px 16px;
+  border-radius: 50px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  background: #FEF3C7;
+  color: #D97706;
+  margin-top: 15px;
+  border: 1px solid #FDE68A;
+}
+
+.tag-fecha {
+  display: inline-block;
+  padding: 8px 16px;
+  border-radius: 50px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  background: #E0E7FF;
+  color: #4338CA;
+  margin-top: 8px;
+  border: 1px solid #C7D2FE;
+}
+
+/* Modal form con Glassmorphism */
+.modal-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(15, 23, 42, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  animation: fadeIn 0.3s ease;
+}
+
+.modal-content {
+  background: rgba(255, 255, 255, 0.95);
+  padding: 40px;
+  border-radius: 24px;
+  width: 90%;
+  max-width: 420px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  border: 1px solid var(--glass-border);
+  text-align: center;
+  position: relative;
+  transform: translateY(0);
+  animation: modalSlideUp 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes modalSlideUp {
+  from { opacity: 0; transform: translateY(30px) scale(0.95); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.modal-content h2 { 
+  margin-top: 0; 
+  color: var(--text-dark); 
+  font-size: 1.8rem;
+  font-weight: 800;
+}
+
+.modal-content input {
+  width: 100%; 
+  box-sizing: border-box; 
+  padding: 14px 18px; 
+  margin-bottom: 16px;
+  border: 2px solid #E2E8F0; 
+  border-radius: 12px; 
+  font-family: var(--font-family); 
+  font-size: 1.05rem;
+  transition: all 0.3s ease;
+  background: #F8FAFC;
+}
+
+.modal-content input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  background: white;
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+}
+
+.modal-content .btn-admin {
+  width: 100%; 
+  border-radius: 12px; 
+  justify-content: center; 
+  background: linear-gradient(135deg, var(--text-dark), #1E293B); 
+  color:white; 
+  border:none; 
+  padding:16px; 
+  cursor:pointer; 
+  font-weight:700;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(15, 23, 42, 0.2);
+}
+
+.modal-content .btn-admin:hover { 
+  background: linear-gradient(135deg, #000, #0F172A); 
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.3);
+}
+
+.close-modal {
+  background: transparent; 
+  color: var(--text-muted); 
+  border: none; 
+  cursor: pointer; 
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.close-modal:hover {
+  color: #EF4444;
+  transform: rotate(90deg) scale(1.2);
+}
+
+/* WhatsApp Flotante Pulsante */
+@keyframes pulseWpp {
+  0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5); }
+  70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+}
+
+.whatsapp-float {
+  position: fixed;
+  width: 65px;
+  height: 65px;
+  bottom: 30px;
+  right: 30px;
+  background: linear-gradient(135deg, #25D366, #128C7E);
+  color: #FFF;
+  border-radius: 50px;
+  font-size: 35px;
+  box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  transition: all 0.3s;
+  animation: pulseWpp 2s infinite;
+}
+
+.whatsapp-float:hover {
+  transform: scale(1.1) translateY(-5px);
+  box-shadow: 0 10px 25px rgba(37, 211, 102, 0.6);
+  animation: none;
+}
