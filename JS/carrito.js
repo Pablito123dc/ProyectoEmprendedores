@@ -1,9 +1,8 @@
 const DB_CARRITO = "carrito_local";
 
-// CONFIGURACIÓN DEL ROBOT COTIZADOR
-// Si usas GitHub Pages, copia aquí el link que te da el archivo .bat (localtunnel)
-// Ejemplo: const API_BASE = "https://tu-link-de-localtunnel.loca.lt";
-const API_BASE = ""; 
+// CONFIGURACIÓN DEL ROBOT COTIZADOR (Rainforest API)
+const API_KEY_RAINFOREST = "E4D41E73E3344211A706CC7F2A3A1C1F";
+const API_BASE = "https://api.rainforestapi.com/request";
 
 function obtenerCarrito() {
   return JSON.parse(localStorage.getItem(DB_CARRITO)) || [];
@@ -54,47 +53,51 @@ async function solicitarCotizacionLink() {
     btn.disabled = true;
 
     try {
-      // 1. Llamar a nuestro servidor local o desplegado en Render/Vercel
-      const response = await fetch(`${API_BASE}/api/amazon-preview?url=${encodeURIComponent(url)}`);
+      // LLAMADA DIRECTA A RAINFOREST API
+      const params = new URLSearchParams({
+        api_key: API_KEY_RAINFOREST,
+        type: 'product',
+        url: url
+      });
+
+      const response = await fetch(`${API_BASE}?${params.toString()}`);
       
       if (!response.ok) {
-        throw new Error('Servidor no respondió correctamente');
+        throw new Error('Error en la comunicación con la API');
       }
 
       const data = await response.json();
 
+      if (!data.product) {
+        throw new Error('No se encontraron datos del producto');
+      }
+
+      // Mapear datos de Rainforest al formato de nuestra tienda
+      const productTitle = data.product.title;
+      const productImage = data.product.main_image?.link || 'https://via.placeholder.com/150';
+      const productPrice = data.product.buybox_winner?.price?.raw || data.product.price?.raw || "Ver en Amazon";
+
       // 2. Mostrar la previsualización mágica
-      document.getElementById('preview-image').src = data.image;
-      document.getElementById('preview-title').innerText = data.title;
-      document.getElementById('preview-price').innerText = data.price;
+      document.getElementById('preview-image').src = productImage;
+      document.getElementById('preview-title').innerText = productTitle;
+      document.getElementById('preview-price').innerText = productPrice;
       
       previewContainer.style.display = 'block';
 
-      // 3. Guardar temporalmente en memoria para pasarlo al carrito
+      // 3. Guardar temporalmente en memoria
       cotizacionPendiente = {
         id: Date.now(),
-        nombre: "Cotización: " + data.title.split(' ').slice(0, 4).join(' '),
+        nombre: "Cotización: " + productTitle.split(' ').slice(0, 4).join(' '),
         descripcion: url,
         precio: 0,
         esLinkEspecial: true,
-        imagenVirtual: data.image
+        imagenVirtual: productImage
       };
 
     } catch (error) {
       console.error(error);
-      alert("No pudimos extraer los datos mágicamente. Asegúrate de tener encendido el Servidor Node (node index.js). Por ahora, igual puedes añadirlo al carrito manualmente haciendo clic de nuevo.");
-      
-      // Fallback manual (si el server node está apagado)
-      cotizacionPendiente = {
-        id: Date.now(),
-        nombre: "Cotización Especial (URL)",
-        descripcion: url,
-        precio: 0,
-        esLinkEspecial: true
-      };
-      
+      alert("Lo siento, el robot está cansado o el link no es compatible. Inténtalo de nuevo o agrega el producto manualmente.");
       previewContainer.style.display = 'none';
-      confirmarAgregadoAlCarritoDeCotizacion();
     }
 
     // Restaurar botón
