@@ -74,11 +74,27 @@ async function solicitarCotizacionLink() {
 
       // Mapear datos de Rainforest al formato de nuestra tienda
       const productTitle = data.product.title;
-      const productImage = data.product.main_image?.link || 'https://via.placeholder.com/150';
+      const productMainImage = data.product.main_image?.link || 'https://via.placeholder.com/150';
       const productPrice = data.product.buybox_winner?.price?.raw || data.product.price?.raw || "Ver en Amazon";
 
-      // 2. Mostrar la previsualización mágica
-      document.getElementById('preview-image').src = productImage;
+      // Recopilar TODAS las imágenes disponibles (sin gastar créditos extra)
+      const todasLasImagenes = (data.product.images || [])
+        .map(img => img.link)
+        .filter(Boolean);
+
+      // Si el array images[] está vacío, caer en main_image
+      const galeriaFinal = todasLasImagenes.length > 0
+        ? todasLasImagenes
+        : [productMainImage];
+
+      const productImage = galeriaFinal[0];
+
+      // 2. Mostrar la galería mágica
+      if (typeof galeriaRenderizar === 'function') {
+        galeriaRenderizar(galeriaFinal);
+      } else {
+        document.getElementById('preview-image').src = productImage;
+      }
       document.getElementById('preview-title').innerText = productTitle;
       document.getElementById('preview-price').innerText = productPrice;
       
