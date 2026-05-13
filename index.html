@@ -1380,6 +1380,31 @@
   </main>
 
 
+  <!-- ── SECCIÓN TENDENCIAS (en la página principal) ── -->
+  <section style="padding: 60px 6% 40px; background: white; border-top: 1px solid var(--border-soft);">
+    <div style="max-width: 1200px; margin: 0 auto;">
+      <!-- Encabezado -->
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 32px; flex-wrap: wrap; gap: 12px;">
+        <div>
+          <div style="display:inline-flex; align-items:center; gap:6px; background: var(--red-vivid); color:white; padding: 6px 16px; border-radius: 20px; font-size:0.8rem; font-weight:800; margin-bottom:10px; box-shadow: 0 4px 14px rgba(200,16,46,0.3);">
+            <i class="fa-solid fa-fire"></i> Lo que otros clientes están pidiendo
+          </div>
+          <h2 style="margin:0; font-size:clamp(1.4rem, 2.5vw, 1.9rem); font-weight:800; color: var(--text-dark); letter-spacing:-0.5px;">Tendencias en Importaciones GT</h2>
+          <p style="margin: 6px 0 0; color: var(--text-muted); font-size:0.95rem;">Productos que ya otros quetzaltecos han cotizado.</p>
+        </div>
+        <a href="tienda.html" style="display:inline-flex; align-items:center; gap:8px; padding: 12px 24px; background: var(--blue-soft); color: var(--blue-mid); font-weight:700; font-size:0.9rem; border-radius: var(--radius-pill); text-decoration:none; transition: var(--bounce);" onmouseover="this.style.background='var(--blue-mid)'; this.style.color='white';" onmouseout="this.style.background='var(--blue-soft)'; this.style.color='var(--blue-mid)';">
+          Ver todos <i class="fa-solid fa-arrow-right"></i>
+        </a>
+      </div>
+      <!-- Grid de productos trending -->
+      <div id="contenedor-tendencias-home" style="
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        gap: 20px;
+      "></div>
+    </div>
+  </section>
+
   <!-- ── Sección de Video Central ── -->
   <section style="padding: 60px 6%; background: var(--off-white); text-align: center;">
     <div style="max-width: 1000px; margin: 0 auto;">
@@ -1444,6 +1469,7 @@
     window.addEventListener('load', () => {
       if (typeof renderizarProductos === 'function') {
         renderizarProductos('contenedor-ofertas-home'); // Muestra productos generales
+        renderizarProductos('contenedor-tendencias-home', true); // Muestra solo trending
       }
     });
   </script>
