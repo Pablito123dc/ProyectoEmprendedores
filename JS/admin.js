@@ -286,8 +286,8 @@ async function registrarNuevoAdmin() {
     alert("¡Dueño registrado con éxito! Ahora puedes iniciar sesión.");
     mostrarRegistroAdmin(false);
   } catch (e) {
-    console.error(e);
-    alert("Error al registrar dueño.");
+    console.error("Error detallado de Firebase:", e);
+    alert("Error al registrar dueño: " + e.message + "\n\nVerifica que hayas activado 'Firestore Database' en tu consola de Firebase y que las reglas estén en 'Modo de prueba'.");
   }
 }
 
@@ -319,7 +319,7 @@ async function validarAccesoAdmin() {
     entrarAlPanel();
   } catch (e) {
     console.error(e);
-    alert("Error de conexión con el servidor.");
+    alert("Error de conexión con el servidor: " + e.message);
   }
 }
 
