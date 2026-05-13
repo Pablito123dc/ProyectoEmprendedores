@@ -1,5 +1,22 @@
 const DB_SESION = "sesion_actual";
 
+function togglePasswordVisibility(inputId, iconElement) {
+  console.log("Cambiando visibilidad de:", inputId);
+  const input = document.getElementById(inputId);
+  if (!input) {
+    console.error("No se encontró el input con ID:", inputId);
+    return;
+  }
+  
+  if (input.type === 'password') {
+    input.type = 'text';
+    iconElement.className = 'fa-solid fa-eye-slash';
+  } else {
+    input.type = 'password';
+    iconElement.className = 'fa-solid fa-eye';
+  }
+}
+
 function obtenerUsuarioActual() {
   return JSON.parse(localStorage.getItem(DB_SESION)) || null;
 }
@@ -146,17 +163,5 @@ function actualizarUIAuth() {
   }
 }
 
-function togglePasswordVisibility(inputId, iconElement) {
-  const input = document.getElementById(inputId);
-  if (input.type === 'password') {
-    input.type = 'text';
-    iconElement.classList.remove('fa-eye');
-    iconElement.classList.add('fa-eye-slash');
-  } else {
-    input.type = 'password';
-    iconElement.classList.remove('fa-eye-slash');
-    iconElement.classList.add('fa-eye');
-  }
-}
 
 window.addEventListener('load', actualizarUIAuth);

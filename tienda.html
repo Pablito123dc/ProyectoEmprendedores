@@ -124,7 +124,7 @@
         <input type="email" id="login-correo" placeholder="Correo Electrónico">
         <div style="position: relative; margin-bottom: 20px;">
           <input type="password" id="login-pass" placeholder="Contraseña" style="padding-right: 45px;">
-          <i class="fa-solid fa-eye" style="position: absolute; right: 15px; top: 50%; transform: translateY(-50%); cursor: pointer; color: #94A3B8;" onclick="togglePasswordVisibility('login-pass', this)"></i>
+          <i class="fa-solid fa-eye" style="position: absolute; right: 15px; top: 50%; transform: translateY(-50%); cursor: pointer; color: #94A3B8; z-index: 100; pointer-events: auto; padding: 10px;" onclick="togglePasswordVisibility('login-pass', this)"></i>
         </div>
         <button class="nav-btn active btn-admin" onclick="procesarLogin()"><i
             class="fa-solid fa-arrow-right-to-bracket"></i> Entrar</button>
@@ -140,7 +140,7 @@
         <input type="text" id="reg-direccion" placeholder="Dirección de Domicilio">
         <div style="position: relative; margin-bottom: 20px;">
           <input type="password" id="reg-pass" placeholder="Crear Contraseña" style="padding-right: 45px;">
-          <i class="fa-solid fa-eye" style="position: absolute; right: 15px; top: 50%; transform: translateY(-50%); cursor: pointer; color: #94A3B8;" onclick="togglePasswordVisibility('reg-pass', this)"></i>
+          <i class="fa-solid fa-eye" style="position: absolute; right: 15px; top: 50%; transform: translateY(-50%); cursor: pointer; color: #94A3B8; z-index: 100; pointer-events: auto; padding: 10px;" onclick="togglePasswordVisibility('reg-pass', this)"></i>
         </div>
         <button class="nav-btn active btn-admin" onclick="procesarRegistro()"><i class="fa-solid fa-user-plus"></i>
           Registrarme</button>
