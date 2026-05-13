@@ -122,7 +122,10 @@
         <p style="color: var(--text-muted); margin-bottom: 20px; font-size: 0.9rem;">Ingresa tus datos para ver tu
           historial y comprar.</p>
         <input type="email" id="login-correo" placeholder="Correo Electrónico">
-        <input type="password" id="login-pass" placeholder="Contraseña">
+        <div style="position: relative; margin-bottom: 20px;">
+          <input type="password" id="login-pass" placeholder="Contraseña" style="padding-right: 45px;">
+          <i class="fa-solid fa-eye" style="position: absolute; right: 15px; top: 50%; transform: translateY(-50%); cursor: pointer; color: #94A3B8;" onclick="togglePasswordVisibility('login-pass', this)"></i>
+        </div>
         <button class="nav-btn active btn-admin" onclick="procesarLogin()"><i
             class="fa-solid fa-arrow-right-to-bracket"></i> Entrar</button>
         <p style="margin-top: 15px; font-size: 0.9rem;">¿No tienes cuenta? <a href="#" onclick="toggleAuth(true)"
@@ -135,7 +138,10 @@
         <input type="tel" id="reg-telefono" placeholder="Número de Teléfono">
         <input type="email" id="reg-correo" placeholder="Correo Electrónico">
         <input type="text" id="reg-direccion" placeholder="Dirección de Domicilio">
-        <input type="password" id="reg-pass" placeholder="Crear Contraseña">
+        <div style="position: relative; margin-bottom: 20px;">
+          <input type="password" id="reg-pass" placeholder="Crear Contraseña" style="padding-right: 45px;">
+          <i class="fa-solid fa-eye" style="position: absolute; right: 15px; top: 50%; transform: translateY(-50%); cursor: pointer; color: #94A3B8;" onclick="togglePasswordVisibility('reg-pass', this)"></i>
+        </div>
         <button class="nav-btn active btn-admin" onclick="procesarRegistro()"><i class="fa-solid fa-user-plus"></i>
           Registrarme</button>
         <p style="margin-top: 15px; font-size: 0.9rem;">¿Ya tienes cuenta? <a href="#" onclick="toggleAuth(false)"

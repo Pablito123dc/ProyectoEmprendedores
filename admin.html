@@ -62,7 +62,10 @@
 
       <div id="admin-login-fields">
         <input type="email" id="admin-email" placeholder="Correo del Administrador" style="width: 100%; margin-bottom: 12px; background: #0F172A; border: 1px solid #334155; color: white;">
-        <input type="password" id="admin-pass" placeholder="Contraseña Maestra" style="width: 100%; margin-bottom: 20px; background: #0F172A; border: 1px solid #334155; color: white;">
+        <div style="position: relative; margin-bottom: 20px;">
+          <input type="password" id="admin-pass" placeholder="Contraseña Maestra" style="width: 100%; background: #0F172A; border: 1px solid #334155; color: white; padding-right: 45px;">
+          <i class="fa-solid fa-eye" style="position: absolute; right: 15px; top: 50%; transform: translateY(-50%); cursor: pointer; color: #94A3B8;" onclick="togglePasswordVisibility('admin-pass', this)"></i>
+        </div>
         <button class="nav-btn active" style="width: 100%; height: 50px; justify-content: center; border-radius: 12px; background: var(--blue-mid);" onclick="validarAccesoAdmin()">
           <i class="fa-solid fa-right-to-bracket"></i> Iniciar Sesión de Dueño
         </button>
@@ -72,7 +75,10 @@
       <div id="admin-register-fields" style="display: none;">
         <input type="text" id="admin-reg-nombre" placeholder="Nombre Completo" style="width: 100%; margin-bottom: 12px; background: #0F172A; border: 1px solid #334155; color: white;">
         <input type="email" id="admin-reg-email" placeholder="Correo Electrónico" style="width: 100%; margin-bottom: 12px; background: #0F172A; border: 1px solid #334155; color: white;">
-        <input type="password" id="admin-reg-pass" placeholder="Crear Contraseña" style="width: 100%; margin-bottom: 12px; background: #0F172A; border: 1px solid #334155; color: white;">
+        <div style="position: relative; margin-bottom: 12px;">
+          <input type="password" id="admin-reg-pass" placeholder="Crear Contraseña" style="width: 100%; background: #0F172A; border: 1px solid #334155; color: white; padding-right: 45px;">
+          <i class="fa-solid fa-eye" style="position: absolute; right: 15px; top: 50%; transform: translateY(-50%); cursor: pointer; color: #94A3B8;" onclick="togglePasswordVisibility('admin-reg-pass', this)"></i>
+        </div>
         <input type="password" id="admin-reg-secret" placeholder="CÓDIGO SECRETO DE DUEÑO" style="width: 100%; margin-bottom: 20px; background: #1E293B; border: 2px solid var(--red-vivid); color: var(--red-vivid); font-weight: 800; text-align: center;">
         
         <button class="nav-btn active" style="width: 100%; height: 50px; justify-content: center; border-radius: 12px; background: var(--red-vivid);" onclick="registrarNuevoAdmin()">
