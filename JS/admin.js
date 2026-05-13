@@ -206,8 +206,15 @@ async function sincronizarOfertasAmazon() {
       search_term: 'deals of the day'
     });
 
-    const response = await fetch(`${API_BASE}?${params.toString()}`);
-    const data = await response.json();
+    const targetUrl = `${API_BASE}?${params.toString()}`;
+    // Usamos un proxy para evitar bloqueos de CORS en GitHub Pages
+    const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(targetUrl)}`;
+
+    const response = await fetch(proxyUrl);
+    const proxyData = await response.json();
+    
+    // AllOrigins devuelve la respuesta dentro de .contents como string
+    const data = JSON.parse(proxyData.contents);
 
     if (!data.search_results) {
       throw new Error("No se obtuvieron resultados de búsqueda");
@@ -236,11 +243,24 @@ async function sincronizarOfertasAmazon() {
     alert("¡Éxito! El catálogo internacional ha sido actualizado correctamente.");
     
   } catch (error) {
-    console.error(error);
-    alert("Hubo un error al conectar con el robot. Revisa tu consola.");
+    console.error("Error detallado del robot:", error);
+    if (error.message.includes("402")) {
+      alert("Error: Los tokens de la API se han agotado. Revisa tu cuenta en Rainforest API.");
+    } else {
+      alert("Error al conectar con el robot. Asegúrate de tener conexión a internet o revisa si tu API KEY es correcta.");
+    }
   } finally {
     btn.innerHTML = originalText;
     btn.disabled = false;
+  }
+}
+
+// Función para cerrar sesión y bloquear el panel
+function cerrarSesionAdmin() {
+  if (confirm("¿Estás seguro de que deseas salir del panel de administración?")) {
+    localStorage.removeItem('sesion_admin');
+    alert("Sesión de administrador cerrada.");
+    location.reload(); // Esto activa el muro de seguridad de nuevo
   }
 }
 
