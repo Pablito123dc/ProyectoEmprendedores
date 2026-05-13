@@ -4,15 +4,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bienvenidos | Importaciones GT</title>
+  <title>Importaciones GT — Traemos el mundo a Guatemala</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="ASSETS/logo_icon.png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="CSS/estilos.css">
 
   <style>
+    /* ── Reset para esta página ── */
     body {
       margin: 0;
       padding: 0;
@@ -21,244 +23,966 @@
       overflow-x: hidden;
     }
 
+    /* ── Navbar de Landing ───────────────────────── */
+
     .landing-nav {
       position: absolute;
       top: 0;
       left: 0;
       right: 0;
-      padding: 20px 5%;
+      padding: 22px 6%;
       display: flex;
       justify-content: space-between;
       align-items: center;
       z-index: 100;
     }
-
-    .landing-brand {
-      color: var(--text-dark);
+.landing-brand {
+      color: white;
       font-weight: 800;
       font-size: 1.5rem;
       display: flex;
       align-items: center;
       gap: 10px;
+      letter-spacing: -0.3px;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .landing-brand i {
+      color: #FFB3BF;
+      /* rojo suave sobre fondo azul */
     }
 
     .landing-links {
       display: flex;
-      gap: 15px;
+      gap: 12px;
     }
 
     .landing-links a {
       text-decoration: none;
-      font-weight: 600;
-      padding: 12px 28px;
-      border-radius: 50px;
-      transition: all 0.3s ease;
+      font-weight: 700;
+      padding: 11px 26px;
+      border-radius: var(--radius-pill);
+      transition: var(--bounce);
       display: flex;
       align-items: center;
       gap: 8px;
+      font-size: 0.95rem;
     }
 
     .link-comprar {
-      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      background: var(--red-vivid);
       color: white;
-      box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+      box-shadow: 0 4px 18px rgba(200, 16, 46, 0.4);
     }
 
     .link-comprar:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(37, 99, 235, 0.5);
+      background: var(--red-dark);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(200, 16, 46, 0.5);
     }
 
     .link-admin {
-      background: rgba(255, 255, 255, 0.5);
-      backdrop-filter: blur(5px);
-      color: var(--text-dark);
-      border: 2px solid rgba(0, 0, 0, 0.1);
+      background: rgba(255, 255, 255, 0.18);
+      backdrop-filter: blur(8px);
+      color: white;
+      border: 1.5px solid rgba(255, 255, 255, 0.45);
     }
 
     .link-admin:hover {
-      background: var(--text-dark);
-      color: white;
-      border-color: var(--text-dark);
+      background: rgba(255, 255, 255, 0.3);
+      transform: translateY(-3px);
     }
+
+    /* ── Hero Principal ──────────────────────────── */
 
     .landing-hero {
       min-height: 100vh;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 120px 5% 50px;
-      background: radial-gradient(circle at top right, #e0e7ff 0%, var(--bg-color) 60%);
+      padding: 0;
+      background:
+        radial-gradient(circle at 75% 20%, rgba(200, 16, 46, 0.12) 0%, transparent 40%),
+        radial-gradient(circle at 10% 80%, rgba(255, 255, 255, 0.15) 0%, transparent 35%),
+        linear-gradient(145deg, var(--blue-deep) 0%, #2B5DAD 100%);
+      background-size: 200% 200%;
+      animation: heroShift 14s ease infinite;
       position: relative;
       overflow: hidden;
     }
 
-    .landing-decoration-1 {
-      position: absolute;
-      width: 600px;
-      height: 600px;
-      background: var(--primary-color);
-      filter: blur(200px);
-      border-radius: 50%;
-      opacity: 0.15;
-      top: -100px;
-      right: -200px;
-      z-index: 0;
-      animation: float 8s ease-in-out infinite;
-    }
-
-    .landing-decoration-2 {
-      position: absolute;
-      width: 500px;
-      height: 500px;
-      background: var(--accent-color);
-      filter: blur(180px);
-      border-radius: 50%;
-      opacity: 0.1;
-      bottom: -100px;
-      left: -150px;
-      z-index: 0;
-      animation: float 6s ease-in-out infinite reverse;
-    }
-
-    @keyframes float {
+    @keyframes heroShift {
       0% {
-        transform: translateY(0px) scale(1);
+        background-position: 0% 50%;
       }
 
       50% {
-        transform: translateY(-40px) scale(1.05);
+        background-position: 100% 50%;
       }
 
       100% {
-        transform: translateY(0px) scale(1);
+        background-position: 0% 50%;
       }
     }
 
-    .landing-content {
+    /* Decoraciones animadas de fondo */
+    .deco-circle {
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .deco-1 {
+      width: 700px;
+      height: 700px;
+      background: white;
+      opacity: 0.12;
+      filter: blur(120px);
+      top: -200px;
+      right: -200px;
+      animation: floatDeco 9s ease-in-out infinite;
+    }
+
+    .deco-2 {
+      width: 500px;
+      height: 500px;
+      background: var(--red-vivid);
+      opacity: 0.15;
+      filter: blur(100px);
+      bottom: -100px;
+      left: -150px;
+      animation: floatDeco 7s ease-in-out infinite reverse;
+    }
+
+    .deco-3 {
+      width: 300px;
+      height: 300px;
+      background: white;
+      opacity: 0.05;
+      filter: blur(80px);
+      top: 40%;
+      left: 40%;
+      animation: floatDeco 11s ease-in-out infinite 2s;
+    }
+
+    @keyframes floatDeco {
+      0% {
+        transform: translateY(0) scale(1);
+      }
+
+      50% {
+        transform: translateY(-50px) scale(1.08);
+      }
+
+      100% {
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    /* Contenido del hero */
+    .hero-inner {
       position: relative;
       z-index: 10;
       width: 100%;
       max-width: 1200px;
+      padding: 20px 6% 60px;
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      gap: 50px;
+      gap: 60px;
       flex-wrap: wrap;
     }
 
-    .landing-text {
+    .hero-text {
       flex: 1;
-      min-width: 320px;
-      text-align: left;
+      min-width: 300px;
+      animation: slideInLeft 0.8s ease-out both;
     }
 
-    .landing-content h1 {
-      font-size: 4rem;
-      font-weight: 800;
-      color: var(--text-dark);
-      line-height: 1.1;
-      margin-bottom: 25px;
-      letter-spacing: -1.5px;
+    @keyframes slideInLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
     }
 
-    .landing-content h1 span {
-      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-      color: transparent;
-    }
-
-    .landing-content p {
-      font-size: 1.25rem;
-      color: var(--text-muted);
-      margin-bottom: 45px;
-      line-height: 1.7;
-    }
-
-    .btn-large {
+    /* Banderita de Guatemala */
+    .hero-flag-tag {
       display: inline-flex;
       align-items: center;
-      gap: 12px;
-      padding: 18px 45px;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      border-radius: var(--radius-pill);
+      padding: 7px 16px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.9);
+      margin-bottom: 24px;
+    }
+
+    .hero-flag-tag .flag-stripe {
+      display: flex;
+      gap: 2px;
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .hero-flag-tag .flag-stripe span {
+      width: 8px;
+      height: 14px;
+      display: block;
+    }
+
+    .hero-flag-tag .s-blue {
+      background: #4A7FD4;
+    }
+
+    .hero-flag-tag .s-white {
+      background: rgba(255, 255, 255, 0.9);
+    }
+
+    .hero-flag-tag .s-blue2 {
+      background: #4A7FD4;
+    }
+
+    .hero-text h1 {
+      font-size: clamp(2.6rem, 5.5vw, 4rem);
+      font-weight: 800;
+      color: white;
+      line-height: 1.08;
+      margin: 0 0 22px;
+      letter-spacing: -2px;
+      text-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .hero-text h1 .highlight {
+      position: relative;
+      display: inline-block;
+      color: #FFB3BF;
+    }
+
+    /* Subrayado decorativo */
+    .hero-text h1 .highlight::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--red-vivid);
+      border-radius: 2px;
+      opacity: 0.6;
+    }
+
+    .hero-text p {
       font-size: 1.2rem;
+      color: rgba(255, 255, 255, 0.82);
+      margin-bottom: 40px;
+      line-height: 1.75;
+      font-weight: 300;
+      max-width: 480px;
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn-hero-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 16px 36px;
+      font-size: 1.05rem;
       font-weight: 700;
       color: white;
-      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-      border-radius: 50px;
+      background: var(--red-vivid);
+      border-radius: var(--radius-pill);
       text-decoration: none;
-      box-shadow: 0 10px 25px rgba(37, 99, 235, 0.4);
-      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      box-shadow: 0 8px 24px rgba(200, 16, 46, 0.45);
+      transition: var(--bounce);
+      font-family: var(--font-family);
     }
 
-    .btn-large:hover {
-      transform: translateY(-5px) scale(1.02);
-      box-shadow: 0 15px 35px rgba(37, 99, 235, 0.5);
+    .btn-hero-primary:hover {
+      transform: translateY(-4px) scale(1.03);
+      box-shadow: 0 14px 32px rgba(200, 16, 46, 0.55);
+      background: var(--red-dark);
     }
 
-    .landing-video-wrapper {
-      flex: 1;
-      min-width: 320px;
+    .btn-hero-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 16px 28px;
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: white;
+      background: rgba(255, 255, 255, 0.12);
+      border: 1.5px solid rgba(255, 255, 255, 0.35);
+      backdrop-filter: blur(8px);
+      border-radius: var(--radius-pill);
+      text-decoration: none;
+      transition: var(--bounce);
+      font-family: var(--font-family);
+    }
+
+    .btn-hero-secondary:hover {
+      background: rgba(255, 255, 255, 0.22);
+      transform: translateY(-4px);
+    }
+
+    /* ── Nuevas Secciones ── */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+    .service-card {
+      background: white;
+      padding: 40px;
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--border-soft);
+      transition: var(--bounce);
       display: flex;
-      justify-content: center;
+      flex-direction: column;
+      gap: 15px;
+    }
+    .service-card:hover { transform: translateY(-10px); box-shadow: var(--shadow-hover); border-color: var(--blue-mid); }
+    .service-icon { font-size: 2.5rem; }
+    .service-card h3 { font-size: 1.4rem; color: var(--blue-deep); margin: 0; }
+    .service-card p { color: var(--text-muted); line-height: 1.6; font-size: 0.95rem; }
+
+    .promise-section {
+      background: linear-gradient(135deg, var(--blue-deep), var(--blue-mid));
+      color: white;
+      padding: 80px 6%;
+      border-radius: var(--radius-xl);
+      margin: 80px 0;
+      text-align: center;
+    }
+    .promise-section h2 { font-size: 2.5rem; margin-bottom: 20px; }
+    .promise-section p { max-width: 700px; margin: 0 auto 40px; font-size: 1.1rem; opacity: 0.9; }
+
+    .audience-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+    }
+    .audience-card {
+      background: var(--blue-soft);
+      padding: 30px;
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(255,255,255,0.5);
+    }
+    .audience-card h4 { color: var(--blue-deep); margin: 10px 0; }
+
+    .channels-bar {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      gap: 20px;
+      background: white;
+      padding: 30px;
+      border-radius: var(--radius-pill);
+      box-shadow: var(--shadow-card);
+      margin: 60px 0;
+    }
+    .channel-item { display: flex; align-items: center; gap: 10px; font-weight: 700; color: var(--blue-mid); }
+
+    /* Estilos para el video */
+    .video-frame {
+      position: relative;
+      width: 100%;
+      max-width: 480px;
+    }
+
+    /* Bandera decorativa sobre el video */
+    .video-flag-bar {
+      display: flex;
+      height: 6px;
+      border-radius: 4px 4px 0 0;
+      overflow: hidden;
+    }
+
+    .video-flag-bar span {
+      flex: 1;
+    }
+
+    .video-flag-bar .fb {
+      background: var(--blue-mid);
+    }
+
+    .video-flag-bar .fw {
+      background: white;
+    }
+
+    .video-flag-bar .fr {
+      background: var(--red-vivid);
     }
 
     .video-container {
-      position: relative;
       width: 100%;
-      max-width: 500px;
-      border-radius: 30px;
+      border-radius: 40px; /* Bordes tipo smartphone */
       overflow: hidden;
-      box-shadow: 0 25px 50px -12px rgba(37, 99, 235, 0.4);
-      border: 4px solid rgba(255, 255, 255, 0.8);
-      transform: perspective(1000px) rotateY(-5deg) translateY(0);
-      transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      box-shadow:
+        0 30px 60px -15px rgba(11, 28, 62, 0.5),
+        0 0 0 10px rgba(255, 255, 255, 0.1); /* Marco de celular */
       background: #0F172A;
+      transition: var(--bounce);
+      max-width: 280px; /* Ancho de celular para formato TikTok */
+      margin: 0 auto;
     }
 
     .video-container:hover {
-      transform: perspective(1000px) rotateY(0deg) translateY(-10px);
-      box-shadow: 0 35px 60px -15px rgba(37, 99, 235, 0.6);
-      border-color: #fff;
+      transform: translateY(-8px) scale(1.02);
+      box-shadow:
+        0 40px 70px -15px rgba(11, 28, 62, 0.6),
+        0 0 0 12px rgba(255, 255, 255, 0.2);
     }
 
     .video-container video {
       width: 100%;
-      height: 100%;
+      display: block;
+      aspect-ratio: 9/16; /* Formato TikTok / Vertical */
       object-fit: cover;
+    }
+
+    /* Badge flotante sobre el video */
+    .video-badge {
+      position: absolute;
+      bottom: -16px;
+      left: -16px;
+      background: white;
+      border-radius: var(--radius-md);
+      padding: 12px 18px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 8px 24px rgba(11, 28, 62, 0.15);
+      border: 1px solid var(--border-soft);
+      font-size: 0.9rem;
+    }
+
+    .video-badge-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--blue-mid), var(--blue-bright));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1rem;
+    }
+
+    .video-badge strong {
+      display: block;
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--blue-mid);
+      letter-spacing: -0.3px;
+    }
+
+    .video-badge span {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    /* ── Sección inferior: Stats + Pasos ─────────── */
+
+    .below-hero {
+      background: var(--bg-color); /* Cambiado de white a bg-color suave */
+      padding: 60px 6% 80px;
+    }
+
+    .below-hero-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* Stats bar */
+    .stats-bar {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      background: white;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-soft);
+      overflow: hidden;
+      box-shadow: var(--shadow-card);
+      margin-bottom: 56px;
+    }
+
+    .stat-item {
+      text-align: center;
+      padding: 12px 10px; /* Reducido de 24px */
+      border-right: 1px solid var(--border-soft);
+      transition: var(--transition);
+      background: var(--card-bg);
+    }
+
+    .stat-item:hover {
+      background: var(--red-soft);
+    }
+
+    .stat-number {
+      font-size: 1.4rem; /* Reducido de 2rem */
+      font-weight: 800;
+      color: var(--blue-mid);
+      letter-spacing: -0.5px;
+      display: block;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .stat-number.red {
+      color: var(--red-vivid);
+    }
+
+    .stat-label {
+      font-size: 0.7rem; /* Reducido de 0.8rem */
+      color: var(--text-muted);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+    }
+
+    /* Título de sección */
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--blue-soft);
+      color: var(--blue-deep);
+      border-radius: var(--radius-pill);
+      padding: 6px 16px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-bottom: 12px;
+    }
+
+    .section-heading {
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 800;
+      color: var(--text-dark);
+      letter-spacing: -1px;
+      margin: 0 0 36px;
+    }
+
+    /* Pasos */
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      position: relative;
+    }
+
+    .step-card {
+      background: white;
+      border: 1px solid var(--border-soft);
+      border-radius: var(--radius-lg);
+      padding: 32px 26px;
+      text-align: center;
+      position: relative;
+      transition: var(--bounce);
+      overflow: hidden;
+    }
+
+    /* Acento de color superior */
+    .step-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+    }
+
+    .step-card:nth-child(1)::before {
+      background: linear-gradient(90deg, var(--blue-mid), var(--blue-bright));
+    }
+
+    .step-card:nth-child(2)::before {
+      background: linear-gradient(90deg, var(--blue-bright), var(--blue-mid));
+    }
+
+    .step-card:nth-child(3)::before {
+      background: linear-gradient(90deg, var(--red-vivid), #E8284A);
+    }
+
+    .step-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .step-num-badge {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 18px;
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: white;
+    }
+
+    .step-card:nth-child(1) .step-num-badge {
+      background: linear-gradient(135deg, var(--blue-mid), var(--blue-bright));
+      box-shadow: 0 6px 16px rgba(43, 93, 173, 0.35);
+    }
+
+    .step-card:nth-child(2) .step-num-badge {
+      background: linear-gradient(135deg, #475569, #334155);
+      box-shadow: 0 6px 16px rgba(51, 65, 85, 0.25);
+    }
+
+    .step-card:nth-child(3) .step-num-badge {
+      background: linear-gradient(135deg, var(--red-vivid), var(--red-dark));
+      box-shadow: 0 6px 16px rgba(200, 16, 46, 0.35);
+    }
+
+    .step-emoji {
+      font-size: 2.2rem;
+      display: block;
+      margin-bottom: 14px;
+    }
+
+    .step-card h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin: 0 0 8px;
+    }
+
+    .step-card p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    /* Flechas entre pasos */
+    .steps-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1.4rem;
+      color: var(--blue-soft);
+      z-index: 2;
+      font-weight: 700;
+    }
+
+    .arrow-1 {
+      left: calc(33.33% - 14px);
+    }
+
+    .arrow-2 {
+      left: calc(66.66% - 14px);
+    }
+
+    /* ── Sección Categorías ──────────────────────── */
+
+    .categories-section {
+      background: var(--off-white);
+      border-top: 1px solid var(--border-soft);
+      padding: 60px 6%;
+    }
+
+    .categories-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .categories-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .cat-card {
+      background: var(--off-white);
+      border: 1px solid var(--border-soft);
+      border-radius: var(--radius-lg);
+      padding: 24px 18px;
+      text-align: center;
+      text-decoration: none;
+      transition: var(--bounce);
       display: block;
     }
 
-    /* Responsividad */
-    @media (max-width: 768px) {
-      .landing-nav {
+    .cat-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-hover);
+      border-color: var(--blue-mid);
+      background: white;
+    }
+
+    .cat-emoji {
+      font-size: 2.4rem;
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    .cat-name {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 4px;
+    }
+
+    .cat-desc {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    /* ── Sección CTA Final ───────────────────────── */
+
+    .cta-section {
+      padding: 80px 6%;
+      background: var(--bg-color);
+    }
+
+    .cta-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 40px;
+      background: linear-gradient(135deg, var(--blue-deep), var(--blue-mid));
+      border-radius: var(--radius-xl);
+      padding: 50px 56px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-inner::before {
+      content: '';
+      position: absolute;
+      top: -60px;
+      right: -60px;
+      width: 300px;
+      height: 300px;
+      background: var(--red-vivid);
+      opacity: 0.12;
+      border-radius: 50%;
+      filter: blur(60px);
+    }
+
+    .cta-text {
+      flex: 1;
+      position: relative;
+      z-index: 1;
+    }
+
+    .cta-text h2 {
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 800;
+      color: white;
+      margin: 0 0 12px;
+      letter-spacing: -1px;
+    }
+
+    .cta-text p {
+      color: rgba(255, 255, 255, 0.75);
+      font-size: 1rem;
+      margin: 0;
+      line-height: 1.6;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      position: relative;
+      z-index: 1;
+    }
+
+    .btn-cta-wa {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 15px 28px;
+      font-size: 1rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #25D366, #128C7E);
+      color: white;
+      border-radius: var(--radius-pill);
+      text-decoration: none;
+      box-shadow: 0 6px 20px rgba(37, 211, 102, 0.35);
+      transition: var(--bounce);
+      font-family: var(--font-family);
+      white-space: nowrap;
+    }
+
+    .btn-cta-wa:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 28px rgba(37, 211, 102, 0.5);
+    }
+
+    .btn-cta-tienda {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 15px 28px;
+      font-size: 1rem;
+      font-weight: 700;
+      background: white;
+      color: var(--blue-mid);
+      border-radius: var(--radius-pill);
+      text-decoration: none;
+      box-shadow: 0 6px 20px rgba(255, 255, 255, 0.2);
+      transition: var(--bounce);
+      font-family: var(--font-family);
+      white-space: nowrap;
+    }
+
+    .btn-cta-tienda:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 28px rgba(255, 255, 255, 0.3);
+    }
+
+    /* ── Footer ──────────────────────────────────── */
+
+    .landing-footer {
+      background: var(--text-dark);
+      color: rgba(255, 255, 255, 0.55);
+      text-align: center;
+      padding: 28px 20px;
+      font-size: 0.88rem;
+    }
+
+    .landing-footer strong {
+      color: rgba(255, 255, 255, 0.85);
+    }
+
+    .footer-flag {
+      display: inline-flex;
+      gap: 3px;
+      align-items: center;
+      margin-left: 8px;
+      vertical-align: middle;
+    }
+
+    .footer-flag span {
+      width: 10px;
+      height: 16px;
+      border-radius: 2px;
+    }
+
+    /* ── Responsive ──────────────────────────────── */
+
+    @media (max-width: 900px) {
+      .hero-inner {
         flex-direction: column;
-        gap: 20px;
-        position: relative;
-        padding-top: 30px;
-      }
-
-      .landing-hero {
-        padding-top: 40px;
-      }
-
-      .landing-content h1 {
-        font-size: 3rem;
+        padding-top: 130px;
         text-align: center;
       }
 
-      .landing-text {
-        text-align: center;
+      .hero-text p {
+        max-width: 100%;
       }
 
-      .landing-links {
-        width: 100%;
+      .hero-ctas {
         justify-content: center;
       }
 
-      .video-container {
-        transform: none;
+      .hero-flag-tag {
+        margin: 0 auto 24px;
+      }
+
+      .stats-bar {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .stat-item:nth-child(2) {
+        border-right: none;
+      }
+
+      .stat-item:nth-child(3) {
+        border-top: 1px solid var(--border-soft);
+      }
+
+      .steps-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+
+      .steps-arrow {
+        display: none;
+      }
+
+      .categories-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .cta-inner {
+        flex-direction: column;
+        text-align: center;
+        padding: 40px 32px;
+      }
+
+      .cta-buttons {
+        justify-content: center;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .landing-nav {
+        flex-direction: column;
+        position: relative;
+        padding: 20px 5% 10px;
+      }
+
+      .landing-brand {
+        color: var(--blue-mid);
+      }
+
+      .landing-brand i {
+        color: var(--red-vivid);
+      }
+
+      .link-admin {
+        color: var(--text-muted);
+        border-color: var(--border-soft);
+        background: rgba(255, 255, 255, 0.9);
+      }
+
+      .landing-hero {
+        background: linear-gradient(145deg, var(--blue-deep), var(--blue-mid));
+      }
+
+      .hero-inner {
+        padding: 60px 5% 60px;
+      }
+
+      .stats-bar {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .stat-item {
+        padding: 18px 10px;
+      }
+
+      .stat-number {
+        font-size: 1.6rem;
+      }
+
+      .categories-grid {
+        grid-template-columns: repeat(2, 1fr);
       }
     }
   </style>
@@ -266,42 +990,297 @@
 
 <body>
 
-  <nav class="landing-nav">
-    <div class="landing-brand">
-      <i class="fa-solid fa-plane-departure" style="color: var(--primary-color);"></i> Importaciones GT
+  <!-- ── Navegación ── -->
+  <nav class="navbar-premium">
+    <a href="index.html" class="brand">
+      <img src="ASSETS/logo_gt.png" alt="Logo" style="height: 75px; width: auto; object-fit: contain; border-radius: 10px;">
+      <span style="margin-left: 10px; font-size: 1.5rem; font-weight: 900; color: white; letter-spacing: -0.5px; white-space: nowrap;">Importaciones GT</span>
+    </a>
+
+    <div class="nav-links-center">
+      <a href="index.html" class="active">Inicio</a>
+      <a href="tienda.html">Tienda</a>
+      <a href="tienda.html?view=pedidos">Mis Pedidos</a>
+      <a href="admin.html">Admin</a>
     </div>
-    <div class="landing-links">
-      <a href="tienda.html" class="link-comprar"><i class="fa-solid fa-bag-shopping"></i> Comprar</a>
-      <a href="admin.html" class="link-admin"><i class="fa-solid fa-user-shield"></i> Admin</a>
+
+    <div class="nav-actions-right">
+      <a href="tienda.html?view=carrito" class="action-icon-btn">
+        <i class="fa-solid fa-cart-shopping"></i>
+      </a>
+      <a href="tienda.html#cotizador-link" class="btn-premium-cotizar">Cotizar ahora</a>
     </div>
   </nav>
 
-  <main class="landing-hero">
-    <div class="landing-decoration-1"></div>
-    <div class="landing-decoration-2"></div>
+  <!-- ── Hero Principal ── -->
+  <header class="landing-hero">
+    <div class="deco-circle deco-1"></div>
+    <div class="deco-circle deco-2"></div>
+    <div class="deco-circle deco-3"></div>
 
-    <div class="landing-content">
-      <div class="landing-text">
-        <h1>Traemos el mundo <span>directo a tu puerta</span></h1>
-        <p>La forma más moderna, rápida y segura de comprar productos internacionales. Explora nuestro catálogo y recibe
-          lo que necesitas sin complicaciones.</p>
-        <a href="tienda.html" class="btn-large">Explorar Tienda <i class="fa-solid fa-arrow-right"></i></a>
+    <div class="hero-inner">
+      <div class="hero-text">
+        <h1>El enlace que faltaba entre <span class="highlight">vos y el mundo</span></h1>
+        <p>Compra en Amazon y nosotros importamos, gestionamos la aduana y lo tenés listo para retirar en nuestra tienda en Quetzaltenango.</p>
+        <div class="hero-ctas">
+          <a href="tienda.html" class="btn-hero-primary">
+            Ver Catálogo <i class="fa-solid fa-arrow-right"></i>
+          </a>
+          <a href="https://wa.me/50240805665?text=Hola%20Importaciones%20GT%2C%20quiero%20cotizar%20un%20producto" class="btn-hero-secondary">
+            Hablar por WhatsApp <i class="fa-brands fa-whatsapp"></i>
+          </a>
+        </div>
       </div>
 
-      <div class="landing-video-wrapper">
-        <div class="video-container">
-          <!-- TODO: Puedes reemplazar tu_video_aqui.mp4 por el nombre de tu propio video -->
-          <!-- O dejar este de demostración temporal -->
-          <video autoplay loop muted playsinline>
-            <source
-              src="https://assets.mixkit.co/videos/preview/mixkit-global-logistics-and-cargo-transport-concept-31633-large.mp4"
-              type="video/mp4">
-            Tu navegador no soporta el video.
-          </video>
+      <div class="hero-visual">
+        <div class="video-frame">
+          <div class="video-flag-bar">
+            <span class="fb"></span>
+            <span class="fw"></span>
+            <span class="fr"></span>
+          </div>
+          <div class="video-container">
+            <video autoplay muted loop playsinline>
+              <source src="ASSETS/video_proyecto.mp4" type="video/mp4">
+            </video>
+          </div>
+          <a href="https://maps.app.goo.gl/Fkr6GfQii3HE1jRP9" target="_blank" class="video-badge" style="text-decoration: none; cursor: pointer;">
+            <div class="video-badge-icon">
+              <i class="fa-solid fa-location-dot"></i>
+            </div>
+            <div>
+              <strong>Tienda en Xela</strong>
+              <span>Ver ubicación</span>
+            </div>
+          </a>
         </div>
       </div>
     </div>
+  </header>
+
+  <!-- Banner de Marcas (Slider) -->
+  <section class="brands-banner-container">
+    <div class="brands-banner-inner">
+      <button class="banner-nav-btn prev" onclick="moveSlide(-1)"><i class="fa-solid fa-chevron-left"></i></button>
+      <div class="banner-slider-wrapper">
+        <div class="banner-slide active">
+          <img src="ASSETS/banner_marcas.png" alt="Importa tus Marcas Favoritas">
+        </div>
+        <div class="banner-slide">
+          <img src="ASSETS/banner_relojes.png" alt="Importa Relojes Premium">
+        </div>
+        <div class="banner-slide">
+          <img src="ASSETS/imagenilustrativa.jpg" alt="Importa tus Marcas Favoritas">
+        </div>
+      </div>
+      <button class="banner-nav-btn next" onclick="moveSlide(1)"><i class="fa-solid fa-chevron-right"></i></button>
+    </div>
+  </section>
+
+  <!-- ── Contenido Principal ── -->
+  <main class="below-hero">
+    <div class="below-hero-inner">
+      
+      <!-- Stats Bar -->
+      <div class="stats-bar">
+        <div class="stat-item">
+          <span class="stat-number">100%</span>
+          <span class="stat-label">Seguro</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number red">+5k</span>
+          <span class="stat-label">Entregas</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">Xela</span>
+          <span class="stat-label">Sede Central</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number red">24h</span>
+          <span class="stat-label">Cotización</span>
+        </div>
+      </div>
+
+      <!-- Red de Trabajo (Compacta y arriba) -->
+      <section style="padding: 20px 6% 40px; text-align: center; border-bottom: 1px solid var(--border-soft); margin-bottom: 40px;">
+        <h4 style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; color: var(--text-muted); margin-bottom: 20px; font-weight: 700;">Con quiénes trabajamos</h4>
+        <div style="display: flex; justify-content: center; gap: 50px; opacity: 0.5; flex-wrap: wrap; align-items: center;">
+          <i class="fa-brands fa-amazon fa-2x"></i>
+          <i class="fa-solid fa-truck-fast fa-2x"></i>
+          <i class="fa-solid fa-shield-halved fa-2x"></i>
+          <i class="fa-solid fa-earth-americas fa-2x"></i>
+        </div>
+      </section>
+
+      <!-- Cómo funciona -->
+      <section style="margin-bottom: 60px;">
+        <div class="section-label"><i class="fa-solid fa-bolt"></i> ¿Cómo funciona?</div>
+        <h2 class="section-heading">Tan simple como mandar un mensaje</h2>
+        <div class="steps-grid">
+          <div class="step-card">
+            <div class="step-num-badge">01</div>
+            <span class="step-emoji">🔗</span>
+            <h3>Pega el link</h3>
+            <p>Copia el enlace del producto que querés desde Amazon y pégalo en nuestro cotizador.</p>
+          </div>
+          <div class="step-card">
+            <div class="step-num-badge">02</div>
+            <span class="step-emoji">💰</span>
+            <h3>Recibís tu cotización</h3>
+            <p>En minutos te decimos el precio exacto: producto + flete + arancel. Sin letra chica.</p>
+          </div>
+          <div class="step-card">
+            <div class="step-num-badge">03</div>
+            <span class="step-emoji">🏁</span>
+            <h3>Nosotros hacemos el resto</h3>
+            <p>Compramos, importamos, gestionamos aduana y lo tenés listo para retirar en nuestra tienda en Xela.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Nuestros Servicios -->
+      <section style="margin-bottom: 60px;">
+        <div class="section-label"><i class="fa-solid fa-star"></i> Nuestros Servicios</div>
+        <h2 class="section-heading">Tres formas de traer el mundo a Xela</h2>
+        <div class="services-grid">
+          <div class="service-card">
+            <span class="service-icon">🛒</span>
+            <h3>Compra por Link</h3>
+            <p>¿Lo viste en Amazon? Péganos el link y lo traemos. Cotización inmediata, precio transparente, retiro en tienda garantizado.</p>
+            <a href="tienda.html" style="color: var(--red-vivid); font-weight: 700; text-decoration: none;">Cotizar ahora →</a>
+          </div>
+          <div class="service-card">
+            <span class="service-icon">📦</span>
+            <h3>Catálogo Express</h3>
+            <p>Productos ya importados y listos para retiro inmediato en nuestra tienda. Sin esperas, sin trámites.</p>
+            <a href="tienda.html" style="color: var(--red-vivid); font-weight: 700; text-decoration: none;">Ver catálogo →</a>
+          </div>
+          <div class="service-card">
+            <span class="service-icon">🏢</span>
+            <h3>Plan Empresarial</h3>
+            <p>Importaciones frecuentes para tu negocio en Quetzaltenango. Descuentos por volumen, facturación y gestión dedicada.</p>
+            <a href="https://wa.me/50240805665?text=Hola%2C%20me%20interesa%20el%20Plan%20Empresarial" style="color: var(--red-vivid); font-weight: 700; text-decoration: none;">Hablar con el equipo →</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Por qué nosotros -->
+      <section style="margin-bottom: 50px;">
+        <div style="display: flex; gap: 40px; align-items: center; flex-wrap: wrap;">
+          <div style="flex: 1; min-width: 300px;">
+            <div class="section-label">¿Por qué Importaciones GT?</div>
+            <h2 class="section-heading">Comprar en Amazon desde Quetzaltenango no debería ser complicado</h2>
+            <p style="color: var(--text-muted); line-height: 1.8; font-size: 1.1rem;">Nació para eliminar las barreras entre vos y los productos que querés. Sin intermediarios confusos, sin cobros escondidos y sin necesitar una dirección en EE.UU. Solo pegás el link y nosotros nos encargamos de todo lo demás.</p>
+          </div>
+          <div style="flex: 1; min-width: 300px; background: white; padding: 40px; border-radius: var(--radius-xl); border: 1px solid var(--border-soft);">
+            <h3 style="color: var(--blue-deep); margin-bottom: 15px;"><i class="fa-solid fa-handshake-angle"></i> Nuestra Promesa</h3>
+            <h4 style="color: var(--red-vivid);">Lo que ves es lo que pagás</h4>
+            <p style="color: var(--text-muted); line-height: 1.6;">Desde el primer mensaje te decimos exactamente cuánto va a costar tu producto. Todo desglosado: artículo, flete y aranceles guatemaltecos. La confianza se construye desde la primera cotización.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- A quién servimos -->
+      <section style="margin-bottom: 60px;">
+        <h2 class="section-heading" style="text-align: center;">¿A quién le servimos? <br><span style="color: var(--text-muted); font-size: 1.2rem; font-weight: 400;">Para todos los que quieren más</span></h2>
+        <div class="audience-grid">
+          <div class="audience-card">
+            <span style="font-size: 2rem;">🛒</span>
+            <h4>El comprador curioso</h4>
+            <p style="font-size: 0.9rem; color: var(--text-muted);">Encontraste algo en Amazon que no se consigue en Quetzaltenango. Nosotros lo traemos.</p>
+          </div>
+          <div class="audience-card">
+            <span style="font-size: 2rem;">🎮</span>
+            <h4>El gamer y el techero</h4>
+            <p style="font-size: 0.9rem; color: var(--text-muted);">Accesorios, componentes y gadgets que todavía no llegan al mercado local. Los traemos antes.</p>
+          </div>
+          <div class="audience-card">
+            <span style="font-size: 2rem;">👨‍👩‍👧</span>
+            <h4>La familia quetzalteca</h4>
+            <p style="font-size: 0.9rem; color: var(--text-muted);">Hogar, ropa y juguetes. Al mejor precio, listo para retirar en Xela.</p>
+          </div>
+          <div class="audience-card">
+            <span style="font-size: 2rem;">🏪</span>
+            <h4>El emprendedor</h4>
+            <p style="font-size: 0.9rem; color: var(--text-muted);">Importá insumos o equipo para tu negocio con precios de volumen y gestión dedicada.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Canales de Contacto -->
+      <div class="channels-bar">
+        <a href="https://wa.me/50240805665?text=Hola%20Importaciones%20GT%2C%20quiero%20cotizar%20un%20producto%20y%20recogerlo%20en%20Xela" target="_blank" class="channel-item" style="text-decoration: none;"><i class="fa-brands fa-whatsapp" style="color: #25D366;"></i> WhatsApp — Inmediato</a>
+        <div class="channel-item"><i class="fa-solid fa-globe" style="color: var(--blue-mid);"></i> Web — 24 horas</div>
+        <a href="https://maps.app.goo.gl/Fkr6GfQii3HE1jRP9" target="_blank" class="channel-item" style="text-decoration: none;"><i class="fa-solid fa-shop" style="color: var(--red-vivid);"></i> Retiro en tienda — Xela</a>
+      </div>
+
+    </div>
   </main>
+
+
+  <!-- ── Sección de Video Central ── -->
+  <section style="padding: 60px 6%; background: var(--off-white); text-align: center;">
+    <div style="max-width: 1000px; margin: 0 auto;">
+      <h2 class="section-heading">Del mundo a tus manos</h2>
+      <p style="color: var(--text-muted); margin-bottom: 30px;">Conoce nuestro proceso y la pasión que le ponemos a cada entrega en Quetzaltenango.</p>
+      
+      <div style="width: 100%; border-radius: var(--radius-xl); overflow: hidden; box-shadow: var(--shadow-lg); background: black; line-height: 0;">
+        <video controls autoplay muted loop playsinline style="width: 100%; display: block; aspect-ratio: 16/9; object-fit: cover;">
+          <source src="ASSETS/VideoCentral.mp4" type="video/mp4">
+          Tu navegador no soporta videos.
+        </video>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CTA Final ── -->
+  <section class="cta-section">
+    <div class="cta-inner">
+      <div class="cta-text">
+        <h2>¿Listo para tu primera importación?</h2>
+        <p>Cotizá gratis en segundos o escribinos por WhatsApp. Respondemos en minutos.</p>
+      </div>
+      <div class="cta-buttons">
+        <a href="https://wa.me/50240805665" target="_blank" class="btn-cta-wa">
+          <i class="fa-brands fa-whatsapp"></i> Hablar con un Experto
+        </a>
+        <a href="tienda.html" class="btn-cta-tienda">
+          <i class="fa-solid fa-bag-shopping"></i> Ver catálogo
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Footer ── -->
+  <footer class="landing-footer">
+    <p>
+      &copy; 2026 <strong>Importaciones GT</strong> — Hecho con orgullo en Quetzaltenango
+      <span class="footer-flag">
+        <span style="background:#3A6DB5; width:10px; height:16px; border-radius:2px; display:inline-block;"></span>
+        <span style="background:#fff; border:1px solid #ddd; width:10px; height:16px; border-radius:2px; display:inline-block;"></span>
+        <span style="background:#C8102E; width:10px; height:16px; border-radius:2px; display:inline-block;"></span>
+      </span>
+    </p>
+  </footer>
+
+  <!-- WhatsApp flotante -->
+  <a href="https://wa.me/50240805665" target="_blank" class="whatsapp-float" title="Chateá con nosotros">
+    <i class="fa-brands fa-whatsapp"></i>
+  </a>
+
+  <script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.banner-slide');
+
+    function moveSlide(direction) {
+      slides[currentSlide].classList.remove('active');
+      currentSlide = (currentSlide + direction + slides.length) % slides.length;
+      slides[currentSlide].classList.add('active');
+    }
+
+    // Auto-slide cada 5 segundos
+    setInterval(() => moveSlide(1), 5000);
+  </script>
 
 </body>
 

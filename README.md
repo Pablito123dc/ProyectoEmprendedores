@@ -2,25 +2,29 @@
 
 ¡Hola! Este es el proyecto de Importaciones GT. Para que todo funcione igual que en la computadora original, incluyendo el "Robot" que busca productos en Amazon, sigue estos pasos:
 
-## 1. Requisitos Previos
-Necesitas tener instalado **Node.js** en tu computadora.
-- Descárgalo aquí: [https://nodejs.org/](https://nodejs.org/) (Instala la versión "LTS").
+## 1. Acceso Rápido
+No necesitas instalar nada. El proyecto está listo para ser usado directamente desde los archivos HTML o desplegado en GitHub Pages.
 
 ## 2. El Robot Cotizador (Cloud)
-¡Buenas noticias! El proyecto ahora usa **Rainforest API**. Esto significa que el robot que busca precios en Amazon vive en la nube. 
+¡Excelentes noticias! El proyecto ahora es **100% Cloud-Native**. 
 
-**No necesitas instalar nada en el servidor ni correr archivos .bat** para que la página funcione. El link de GitHub ya tiene el robot integrado.
+Esto significa que:
+- El "Robot" que busca precios en Amazon usa **Rainforest API** en la nube.
+- Ya **no necesitas instalar Node.js** ni correr ningún archivo `.bat`.
+- La página funciona instantáneamente al abrirla.
 
 ## 3. Cómo usarlo
-Simplemente abre el archivo `index.html` en tu navegador o entra al enlace de GitHub Pages.
-1. Pega un link de Amazon.
-2. Presiona "Cotizar".
+Simplemente abre el archivo `index.html` en tu navegador:
+1. Pega un link de Amazon en el cotizador.
+2. Presiona "Cargar Previsualización".
 3. El robot te mostrará la imagen y el precio real al instante.
+4. ¡Listo para añadir al carrito!
 
-## 4. Notas para Desarrolladores
-Si quieres modificar el código del servidor original (que está en la carpeta `server`), aún puedes hacerlo, pero la página web principal ya no lo necesita para funcionar.
-
-**Nota:** Asegúrate de abrir la página (`index.html`) en el mismo navegador donde el servidor está corriendo.
+## 4. Notas Técnicas
+Este proyecto utiliza una arquitectura moderna sin servidor:
+- **Frontend**: HTML5, CSS3 y JavaScript Vanilla.
+- **Base de Datos**: Firebase Firestore (en la nube).
+- **Extracción de Datos**: Rainforest API (Amazon Data Services).
 
 ## 5. Usar a Antigravity (IA)
 Si quieres que la misma Inteligencia Artificial te ayude con el código:

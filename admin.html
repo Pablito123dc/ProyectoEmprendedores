@@ -10,6 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="CSS/estilos.css">
+  <link rel="icon" type="image/png" href="ASSETS/logo_gt.png">
   <style>
     .admin-form {
       background: white;
@@ -53,10 +54,19 @@
     <p>Gestiona los productos de tu catálogo y revisa los pedidos</p>
   </header>
 
-  <nav class="main-nav">
-    <a href="tienda.html" class="nav-btn" style="text-decoration:none;"><i class="fa-solid fa-store"></i> Volver a la Tienda</a>
-    <button id="btn-admin-productos" class="nav-btn active" onclick="mostrarVistaAdmin('admin-productos')"><i class="fa-solid fa-boxes-stacked"></i> Inventario</button>
-    <button id="btn-admin-pedidos" class="nav-btn" onclick="mostrarVistaAdmin('admin-pedidos')"><i class="fa-solid fa-file-invoice-dollar"></i> Ver Pedidos</button>
+  <nav class="navbar-premium">
+    <div class="brand">
+      <img src="ASSETS/logo_gt.png" alt="Admin" style="height: 60px; width: auto; object-fit: contain; border-radius: 8px;">
+      <span style="font-size: 0.9rem; margin-left: 8px; font-weight: 700; color: white; white-space: nowrap;">Admin</span>
+    </div>
+    <div class="nav-links-center">
+      <a href="tienda.html" class="nav-btn" style="text-decoration:none;"><i class="fa-solid fa-store"></i> Tienda</a>
+      <a href="#" id="btn-admin-productos" class="nav-btn active" onclick="mostrarVistaAdmin('admin-productos')">Inventario</a>
+      <a href="#" id="btn-admin-pedidos" class="nav-btn" onclick="mostrarVistaAdmin('admin-pedidos')">Ver Pedidos</a>
+    </div>
+    <div class="nav-actions-right">
+      <a href="index.html" class="btn-premium-cotizar" style="background:var(--red-vivid); color:white;">Salir de Panel</a>
+    </div>
   </nav>
 
   <main class="container">
