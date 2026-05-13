@@ -1,3 +1,6 @@
+const API_KEY_RAINFOREST = "E4D41E73E3344211A706CC7F2A3A1C1F";
+const API_BASE = "https://api.rainforestapi.com/request";
+
 function mostrarVistaAdmin(vista) {
   document.getElementById("admin-productos").style.display = "none";
   document.getElementById("admin-pedidos").style.display = "none";
@@ -183,6 +186,60 @@ async function renderAdminPedidos() {
   } catch(e) {
     console.error(e);
     contenedor.innerHTML = "<div class='empty-state' style='color:#EF4444'>Error sincronizando pedidos con la nube. Verifica tu conexión a internet o los permisos de Firebase.</div>";
+  }
+}
+
+async function sincronizarOfertasAmazon() {
+  if(!confirm("¿Deseas sincronizar los productos destacados de hoy desde el servidor internacional?")) return;
+
+  const btn = event.currentTarget;
+  const originalText = btn.innerHTML;
+  btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Conectando con Amazon Global...';
+  btn.disabled = true;
+
+  try {
+    const params = new URLSearchParams({
+      api_key: API_KEY_RAINFOREST,
+      type: 'search',
+      amazon_domain: 'amazon.com',
+      search_term: 'deals of the day'
+    });
+
+    const response = await fetch(`${API_BASE}?${params.toString()}`);
+    const data = await response.json();
+
+    if (!data.search_results) {
+      throw new Error("No se obtuvieron resultados de búsqueda");
+    }
+
+    // Limpiar ofertas viejas en Firebase
+    const oldOffers = await db.collection("ofertas").get();
+    const batch = db.batch();
+    oldOffers.docs.forEach(doc => batch.delete(doc.ref));
+    await batch.commit();
+
+    // Guardar nuevas ofertas (tomamos las primeras 8 para no saturar)
+    const newOffers = data.search_results.slice(0, 8);
+    for (const item of newOffers) {
+      await db.collection("ofertas").add({
+        id: Date.now() + Math.random(),
+        nombre: item.title,
+        descripcion: "Oferta de Amazon — Enlace directo",
+        precio: item.price ? Math.ceil(item.price.value * 8.5) : 0, // Conversión aprox + comisión
+        imagen: item.image,
+        url: item.link,
+        esOferta: true
+      });
+    }
+
+    alert("¡Éxito! El catálogo internacional ha sido actualizado correctamente.");
+    
+  } catch (error) {
+    console.error(error);
+    alert("Hubo un error al conectar con el robot. Revisa tu consola.");
+  } finally {
+    btn.innerHTML = originalText;
+    btn.disabled = false;
   }
 }
 

@@ -71,13 +71,29 @@
 
   <main class="container">
     <section id="admin-productos">
-      <div class="admin-form" id="form-nuevo-producto">
-        <h3>Añadir Nuevo Producto</h3>
-        <input type="text" id="prod-nombre" placeholder="Nombre de tu producto (ej. iPhone 15 Pro)">
-        <textarea id="prod-desc" placeholder="Descripción detallada" rows="3"></textarea>
-        <input type="number" id="prod-precio" placeholder="Precio en Quetzales">
-        <input type="url" id="prod-imagen" placeholder="Enlace de la foto (opcional)">
-        <button class="nav-btn active btn-admin" style="justify-content: center; width: 100%; border-radius: 12px;" onclick="guardarNuevoProducto()"><i class="fa-solid fa-plus"></i> Añadir a la tienda</button>
+      <!-- 🚀 SECCIÓN DE SINCRONIZACIÓN PROFESIONAL -->
+      <div class="admin-form" style="border: 3px solid var(--blue-mid); background: #F8FAFC; border-radius: 25px; padding: 40px; text-align: center;">
+        <div style="font-size: 3rem; margin-bottom: 15px;">🌐</div>
+        <h2 style="color: var(--blue-mid); margin-bottom: 10px; font-weight: 800;">Sincronización de Catálogo Global</h2>
+        <p style="font-size: 1.1rem; color: var(--text-dark); margin-bottom: 25px; max-width: 600px; margin-left: auto; margin-right: auto;">
+          Actualiza instantáneamente la selección de productos destacados desde los centros logísticos internacionales de Amazon.
+        </p>
+        <button class="nav-btn active" style="background: var(--blue-mid); height: 60px; font-size: 1.2rem; justify-content: center; width: 100%; border-radius: 15px; color: white; box-shadow: 0 10px 20px rgba(43, 93, 173, 0.2);" onclick="sincronizarOfertasAmazon()">
+          <i class="fa-solid fa-cloud-arrow-down"></i> ACTUALIZAR CATÁLOGO INTERNACIONAL
+        </button>
+      </div>
+
+      <hr style="margin: 50px 0; border: 0; border-top: 2px dashed #CBD5E1;">
+
+      <!-- 📝 SECCIÓN MANUAL (OPCIONAL) -->
+      <div class="admin-form" id="form-nuevo-producto" style="opacity: 0.8;">
+        <h3 style="color: var(--text-muted);"><i class="fa-solid fa-hand-holding-hand"></i> Añadir Producto Manualmente</h3>
+        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 10px;">Usa esto solo si quieres subir un producto tuyo que no está en Amazon.</p>
+        <input type="text" id="prod-nombre" placeholder="Nombre del producto">
+        <textarea id="prod-desc" placeholder="Descripción" rows="2"></textarea>
+        <input type="number" id="prod-precio" placeholder="Precio en Q">
+        <input type="url" id="prod-imagen" placeholder="Link de foto">
+        <button class="nav-btn active btn-admin" style="justify-content: center; width: 100%; border-radius: 12px;" onclick="guardarNuevoProducto()"><i class="fa-solid fa-plus"></i> Añadir Manualmente</button>
       </div>
 
       <h2>Tus Productos Actuales</h2>

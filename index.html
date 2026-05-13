@@ -36,7 +36,8 @@
       align-items: center;
       z-index: 100;
     }
-.landing-brand {
+
+    .landing-brand {
       color: white;
       font-weight: 800;
       font-size: 1.5rem;
@@ -348,6 +349,7 @@
       gap: 30px;
       margin-top: 40px;
     }
+
     .service-card {
       background: white;
       padding: 40px;
@@ -358,10 +360,30 @@
       flex-direction: column;
       gap: 15px;
     }
-    .service-card:hover { transform: translateY(-10px); box-shadow: var(--shadow-hover); border-color: var(--blue-mid); }
-    .service-icon { font-size: 2.5rem; }
-    .service-card h3 { font-size: 1.4rem; color: var(--blue-deep); margin: 0; }
-    .service-card p { color: var(--text-muted); line-height: 1.6; font-size: 0.95rem; }
+
+    .service-card:hover {
+      transform: translateY(-10px);
+      box-shadow:
+        0 20px 40px -10px var(--shadow-glow-blue),
+        0 10px 20px -5px var(--shadow-glow-red);
+      border-color: var(--blue-mid);
+    }
+
+    .service-icon {
+      font-size: 2.5rem;
+    }
+
+    .service-card h3 {
+      font-size: 1.4rem;
+      color: var(--blue-deep);
+      margin: 0;
+    }
+
+    .service-card p {
+      color: var(--text-muted);
+      line-height: 1.6;
+      font-size: 0.95rem;
+    }
 
     .promise-section {
       background: linear-gradient(135deg, var(--blue-deep), var(--blue-mid));
@@ -371,21 +393,46 @@
       margin: 80px 0;
       text-align: center;
     }
-    .promise-section h2 { font-size: 2.5rem; margin-bottom: 20px; }
-    .promise-section p { max-width: 700px; margin: 0 auto 40px; font-size: 1.1rem; opacity: 0.9; }
+
+    .promise-section h2 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+
+    .promise-section p {
+      max-width: 700px;
+      margin: 0 auto 40px;
+      font-size: 1.1rem;
+      opacity: 0.9;
+    }
 
     .audience-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
       gap: 20px;
     }
+
     .audience-card {
       background: var(--blue-soft);
       padding: 30px;
       border-radius: var(--radius-lg);
-      border: 1px solid rgba(255,255,255,0.5);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      transition: var(--bounce);
     }
-    .audience-card h4 { color: var(--blue-deep); margin: 10px 0; }
+
+    .audience-card:hover {
+      transform: translateY(-8px);
+      box-shadow:
+        0 20px 40px -10px var(--shadow-glow-blue),
+        0 10px 20px -5px var(--shadow-glow-red);
+      background: white !important;
+      border-color: var(--blue-mid);
+    }
+
+    .audience-card h4 {
+      color: var(--blue-deep);
+      margin: 10px 0;
+    }
 
     .channels-bar {
       display: flex;
@@ -398,7 +445,14 @@
       box-shadow: var(--shadow-card);
       margin: 60px 0;
     }
-    .channel-item { display: flex; align-items: center; gap: 10px; font-weight: 700; color: var(--blue-mid); }
+
+    .channel-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      color: var(--blue-mid);
+    }
 
     /* Estilos para el video */
     .video-frame {
@@ -433,14 +487,17 @@
 
     .video-container {
       width: 100%;
-      border-radius: 40px; /* Bordes tipo smartphone */
+      border-radius: 40px;
+      /* Bordes tipo smartphone */
       overflow: hidden;
       box-shadow:
         0 30px 60px -15px rgba(11, 28, 62, 0.5),
-        0 0 0 10px rgba(255, 255, 255, 0.1); /* Marco de celular */
+        0 0 0 10px rgba(255, 255, 255, 0.1);
+      /* Marco de celular */
       background: #0F172A;
       transition: var(--bounce);
-      max-width: 280px; /* Ancho de celular para formato TikTok */
+      max-width: 280px;
+      /* Ancho de celular para formato TikTok */
       margin: 0 auto;
     }
 
@@ -454,7 +511,8 @@
     .video-container video {
       width: 100%;
       display: block;
-      aspect-ratio: 9/16; /* Formato TikTok / Vertical */
+      aspect-ratio: 9/16;
+      /* Formato TikTok / Vertical */
       object-fit: cover;
     }
 
@@ -502,7 +560,8 @@
     /* ── Sección inferior: Stats + Pasos ─────────── */
 
     .below-hero {
-      background: var(--bg-color); /* Cambiado de white a bg-color suave */
+      background: var(--bg-color);
+      /* Cambiado de white a bg-color suave */
       padding: 60px 6% 80px;
     }
 
@@ -525,7 +584,8 @@
 
     .stat-item {
       text-align: center;
-      padding: 12px 10px; /* Reducido de 24px */
+      padding: 12px 10px;
+      /* Reducido de 24px */
       border-right: 1px solid var(--border-soft);
       transition: var(--transition);
       background: var(--card-bg);
@@ -536,7 +596,8 @@
     }
 
     .stat-number {
-      font-size: 1.4rem; /* Reducido de 2rem */
+      font-size: 1.4rem;
+      /* Reducido de 2rem */
       font-weight: 800;
       color: var(--blue-mid);
       letter-spacing: -0.5px;
@@ -550,7 +611,8 @@
     }
 
     .stat-label {
-      font-size: 0.7rem; /* Reducido de 0.8rem */
+      font-size: 0.7rem;
+      /* Reducido de 0.8rem */
       color: var(--text-muted);
       font-weight: 600;
       text-transform: uppercase;
@@ -624,7 +686,9 @@
 
     .step-card:hover {
       transform: translateY(-8px);
-      box-shadow: var(--shadow-hover);
+      box-shadow:
+        0 20px 40px -10px var(--shadow-glow-red),
+        0 10px 20px -5px var(--shadow-glow-blue);
     }
 
     .step-num-badge {
@@ -993,8 +1057,11 @@
   <!-- ── Navegación ── -->
   <nav class="navbar-premium">
     <a href="index.html" class="brand">
-      <img src="ASSETS/logo_gt.png" alt="Logo" style="height: 75px; width: auto; object-fit: contain; border-radius: 10px;">
-      <span style="margin-left: 10px; font-size: 1.5rem; font-weight: 900; color: white; letter-spacing: -0.5px; white-space: nowrap;">Importaciones GT</span>
+      <img src="ASSETS/logo_gt.png" alt="Logo"
+        style="height: 75px; width: auto; object-fit: contain; border-radius: 10px;">
+      <span
+        style="margin-left: 10px; font-size: 1.5rem; font-weight: 900; color: white; letter-spacing: -0.5px; white-space: nowrap;">Importaciones
+        GT</span>
     </a>
 
     <div class="nav-links-center">
@@ -1021,12 +1088,14 @@
     <div class="hero-inner">
       <div class="hero-text">
         <h1>El enlace que faltaba entre <span class="highlight">vos y el mundo</span></h1>
-        <p>Compra en Amazon y nosotros importamos, gestionamos la aduana y lo tenés listo para retirar en nuestra tienda en Quetzaltenango.</p>
+        <p>Compra en Amazon y nosotros importamos, gestionamos la aduana y lo tenés listo para retirar en nuestra tienda
+          en Quetzaltenango.</p>
         <div class="hero-ctas">
           <a href="tienda.html" class="btn-hero-primary">
             Ver Catálogo <i class="fa-solid fa-arrow-right"></i>
           </a>
-          <a href="https://wa.me/50240805665?text=Hola%20Importaciones%20GT%2C%20quiero%20cotizar%20un%20producto" class="btn-hero-secondary">
+          <a href="https://wa.me/50240805665?text=Hola%20Importaciones%20GT%2C%20quiero%20cotizar%20un%20producto"
+            class="btn-hero-secondary">
             Hablar por WhatsApp <i class="fa-brands fa-whatsapp"></i>
           </a>
         </div>
@@ -1044,7 +1113,8 @@
               <source src="ASSETS/video_proyecto.mp4" type="video/mp4">
             </video>
           </div>
-          <a href="https://maps.app.goo.gl/Fkr6GfQii3HE1jRP9" target="_blank" class="video-badge" style="text-decoration: none; cursor: pointer;">
+          <a href="https://maps.app.goo.gl/Fkr6GfQii3HE1jRP9" target="_blank" class="video-badge"
+            style="text-decoration: none; cursor: pointer;">
             <div class="video-badge-icon">
               <i class="fa-solid fa-location-dot"></i>
             </div>
@@ -1058,7 +1128,35 @@
     </div>
   </header>
 
-  <!-- Banner de Marcas (Slider) -->
+  <!-- Cómo funciona (Subido para mayor impacto) -->
+  <section style="background: white; padding: 60px 6% 20px;">
+    <div style="max-width: 1200px; margin: 0 auto;">
+      <div class="section-label"><i class="fa-solid fa-bolt"></i> ¿Cómo funciona?</div>
+      <h2 class="section-heading">Tan simple como mandar un mensaje</h2>
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-num-badge">01</div>
+          <span class="step-emoji">🔗</span>
+          <h3>Pega el link</h3>
+          <p>Copia el enlace del producto que querés desde Amazon y pégalo en nuestro cotizador.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num-badge">02</div>
+          <span class="step-emoji">💰</span>
+          <h3>Recibís tu cotización</h3>
+          <p>En minutos te decimos el precio exacto: producto + flete + arancel. Sin letra chica.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num-badge">03</div>
+          <span class="step-emoji">🏁</span>
+          <h3>Nosotros hacemos el resto</h3>
+          <p>Compramos, importamos, gestionamos aduana y lo tenés listo para retirar en nuestra tienda en Xela.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Banner de Marcas (Slider - Reubicado abajo de Cómo funciona) -->
   <section class="brands-banner-container">
     <div class="brands-banner-inner">
       <button class="banner-nav-btn prev" onclick="moveSlide(-1)"><i class="fa-solid fa-chevron-left"></i></button>
@@ -1080,7 +1178,69 @@
   <!-- ── Contenido Principal ── -->
   <main class="below-hero">
     <div class="below-hero-inner">
-      
+      <!-- Sobre Nosotros -->
+      <section style="margin-bottom: 80px;">
+        <div class="section-label"><i class="fa-solid fa-users"></i> Sobre Nosotros</div>
+        <h2 class="section-heading">Quiénes Somos</h2>
+        <p
+          style="color: var(--text-muted); line-height: 1.8; font-size: 1.15rem; max-width: 900px; margin-bottom: 40px;">
+          Somos una empresa guatemalteca nacida para conectar a las personas con los mejores productos del mundo.
+          Creemos que no importa dónde vivás en Guatemala, merecés acceso a todo lo que el mundo tiene para ofrecer, sin
+          complicaciones, sin engaños y sin salir de casa.
+        </p>
+
+        <div
+          style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-bottom: 50px;">
+          <div class="step-card" style="text-align: left; padding: 40px;">
+            <div style="font-size: 2.5rem; margin-bottom: 20px;">🎯</div>
+            <h3 style="font-size: 1.5rem; margin-bottom: 15px; color: var(--blue-mid);">Misión</h3>
+            <p style="font-size: 1rem; color: var(--text-muted); line-height: 1.6;">
+              Facilitar el acceso a productos internacionales para todos los guatemaltecos, ofreciendo un servicio de
+              importación transparente, confiable y personalizado que elimine las barreras entre nuestros clientes y lo
+              que desean comprar.
+            </p>
+          </div>
+          <div class="step-card" style="text-align: left; padding: 40px;">
+            <div style="font-size: 2.5rem; margin-bottom: 20px;">🚀</div>
+            <h3 style="font-size: 1.5rem; margin-bottom: 15px; color: var(--red-vivid);">Visión</h3>
+            <p style="font-size: 1rem; color: var(--text-muted); line-height: 1.6;">
+              Ser la empresa de importaciones más confiable y reconocida de Guatemala, convirtiéndonos en el puente
+              preferido entre los guatemaltecos y el comercio internacional.
+            </p>
+          </div>
+        </div>
+
+        <h3
+          style="font-size: 1.8rem; font-weight: 800; color: var(--text-dark); margin-bottom: 30px; text-align: center;">
+          Nuestros Objetivos</h3>
+        <div class="audience-grid">
+          <div class="audience-card" style="background: white; border: 1px solid var(--border-soft);">
+            <span style="font-size: 2.5rem;">🎯</span>
+            <h4 style="color: var(--blue-mid); font-size: 1.2rem;">Transparencia total</h4>
+            <p style="font-size: 0.95rem; color: var(--text-muted);">Que cada cliente sepa exactamente lo que paga antes
+              de confirmar su pedido. Sin costos ocultos, sin sorpresas.</p>
+          </div>
+          <div class="audience-card" style="background: white; border: 1px solid var(--border-soft);">
+            <span style="font-size: 2.5rem;">🚀</span>
+            <h4 style="color: var(--red-vivid); font-size: 1.2rem;">Acceso para todos</h4>
+            <p style="font-size: 0.95rem; color: var(--text-muted);">Que cualquier persona en Guatemala, sin importar
+              dónde esté, pueda importar lo que quiera de forma fácil y segura.</p>
+          </div>
+          <div class="audience-card" style="background: white; border: 1px solid var(--border-soft);">
+            <span style="font-size: 2.5rem;">🤝</span>
+            <h4 style="color: var(--blue-mid); font-size: 1.2rem;">Relaciones de confianza</h4>
+            <p style="font-size: 0.95rem; color: var(--text-muted);">Construir relaciones duraderas con nuestros
+              clientes basadas en honestidad, cumplimiento y atención personalizada.</p>
+          </div>
+          <div class="audience-card" style="background: white; border: 1px solid var(--border-soft);">
+            <span style="font-size: 2.5rem;">🌎</span>
+            <h4 style="color: var(--red-vivid); font-size: 1.2rem;">Crecimiento constante</h4>
+            <p style="font-size: 0.95rem; color: var(--text-muted);">Expandir nuestra red de socios, couriers y destinos
+              para llevar cada vez más productos a más guatemaltecos.</p>
+          </div>
+        </div>
+      </section>
+
       <!-- Stats Bar -->
       <div class="stats-bar">
         <div class="stat-item">
@@ -1102,9 +1262,13 @@
       </div>
 
       <!-- Red de Trabajo (Compacta y arriba) -->
-      <section style="padding: 20px 6% 40px; text-align: center; border-bottom: 1px solid var(--border-soft); margin-bottom: 40px;">
-        <h4 style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; color: var(--text-muted); margin-bottom: 20px; font-weight: 700;">Con quiénes trabajamos</h4>
-        <div style="display: flex; justify-content: center; gap: 50px; opacity: 0.5; flex-wrap: wrap; align-items: center;">
+      <section
+        style="padding: 20px 6% 40px; text-align: center; border-bottom: 1px solid var(--border-soft); margin-bottom: 40px;">
+        <h4
+          style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; color: var(--text-muted); margin-bottom: 20px; font-weight: 700;">
+          Con quiénes trabajamos</h4>
+        <div
+          style="display: flex; justify-content: center; gap: 50px; opacity: 0.5; flex-wrap: wrap; align-items: center;">
           <i class="fa-brands fa-amazon fa-2x"></i>
           <i class="fa-solid fa-truck-fast fa-2x"></i>
           <i class="fa-solid fa-shield-halved fa-2x"></i>
@@ -1112,31 +1276,7 @@
         </div>
       </section>
 
-      <!-- Cómo funciona -->
-      <section style="margin-bottom: 60px;">
-        <div class="section-label"><i class="fa-solid fa-bolt"></i> ¿Cómo funciona?</div>
-        <h2 class="section-heading">Tan simple como mandar un mensaje</h2>
-        <div class="steps-grid">
-          <div class="step-card">
-            <div class="step-num-badge">01</div>
-            <span class="step-emoji">🔗</span>
-            <h3>Pega el link</h3>
-            <p>Copia el enlace del producto que querés desde Amazon y pégalo en nuestro cotizador.</p>
-          </div>
-          <div class="step-card">
-            <div class="step-num-badge">02</div>
-            <span class="step-emoji">💰</span>
-            <h3>Recibís tu cotización</h3>
-            <p>En minutos te decimos el precio exacto: producto + flete + arancel. Sin letra chica.</p>
-          </div>
-          <div class="step-card">
-            <div class="step-num-badge">03</div>
-            <span class="step-emoji">🏁</span>
-            <h3>Nosotros hacemos el resto</h3>
-            <p>Compramos, importamos, gestionamos aduana y lo tenés listo para retirar en nuestra tienda en Xela.</p>
-          </div>
-        </div>
-      </section>
+      <!-- Cómo funciona se movió arriba del slider -->
 
       <!-- Nuestros Servicios -->
       <section style="margin-bottom: 60px;">
@@ -1146,20 +1286,25 @@
           <div class="service-card">
             <span class="service-icon">🛒</span>
             <h3>Compra por Link</h3>
-            <p>¿Lo viste en Amazon? Péganos el link y lo traemos. Cotización inmediata, precio transparente, retiro en tienda garantizado.</p>
-            <a href="tienda.html" style="color: var(--red-vivid); font-weight: 700; text-decoration: none;">Cotizar ahora →</a>
+            <p>¿Lo viste en Amazon? Péganos el link y lo traemos. Cotización inmediata, precio transparente, retiro en
+              tienda garantizado.</p>
+            <a href="tienda.html" style="color: var(--red-vivid); font-weight: 700; text-decoration: none;">Cotizar
+              ahora →</a>
           </div>
           <div class="service-card">
             <span class="service-icon">📦</span>
             <h3>Catálogo Express</h3>
             <p>Productos ya importados y listos para retiro inmediato en nuestra tienda. Sin esperas, sin trámites.</p>
-            <a href="tienda.html" style="color: var(--red-vivid); font-weight: 700; text-decoration: none;">Ver catálogo →</a>
+            <a href="tienda.html" style="color: var(--red-vivid); font-weight: 700; text-decoration: none;">Ver catálogo
+              →</a>
           </div>
           <div class="service-card">
             <span class="service-icon">🏢</span>
             <h3>Plan Empresarial</h3>
-            <p>Importaciones frecuentes para tu negocio en Quetzaltenango. Descuentos por volumen, facturación y gestión dedicada.</p>
-            <a href="https://wa.me/50240805665?text=Hola%2C%20me%20interesa%20el%20Plan%20Empresarial" style="color: var(--red-vivid); font-weight: 700; text-decoration: none;">Hablar con el equipo →</a>
+            <p>Importaciones frecuentes para tu negocio en Quetzaltenango. Descuentos por volumen, facturación y gestión
+              dedicada.</p>
+            <a href="https://wa.me/50240805665?text=Hola%2C%20me%20interesa%20el%20Plan%20Empresarial"
+              style="color: var(--red-vivid); font-weight: 700; text-decoration: none;">Hablar con el equipo →</a>
           </div>
         </div>
       </section>
@@ -1170,48 +1315,64 @@
           <div style="flex: 1; min-width: 300px;">
             <div class="section-label">¿Por qué Importaciones GT?</div>
             <h2 class="section-heading">Comprar en Amazon desde Quetzaltenango no debería ser complicado</h2>
-            <p style="color: var(--text-muted); line-height: 1.8; font-size: 1.1rem;">Nació para eliminar las barreras entre vos y los productos que querés. Sin intermediarios confusos, sin cobros escondidos y sin necesitar una dirección en EE.UU. Solo pegás el link y nosotros nos encargamos de todo lo demás.</p>
+            <p style="color: var(--text-muted); line-height: 1.8; font-size: 1.1rem;">Nació para eliminar las barreras
+              entre vos y los productos que querés. Sin intermediarios confusos, sin cobros escondidos y sin necesitar
+              una dirección en EE.UU. Solo pegás el link y nosotros nos encargamos de todo lo demás.</p>
           </div>
-          <div style="flex: 1; min-width: 300px; background: white; padding: 40px; border-radius: var(--radius-xl); border: 1px solid var(--border-soft);">
-            <h3 style="color: var(--blue-deep); margin-bottom: 15px;"><i class="fa-solid fa-handshake-angle"></i> Nuestra Promesa</h3>
+          <div
+            style="flex: 1; min-width: 300px; background: white; padding: 40px; border-radius: var(--radius-xl); border: 1px solid var(--border-soft);">
+            <h3 style="color: var(--blue-deep); margin-bottom: 15px;"><i class="fa-solid fa-handshake-angle"></i>
+              Nuestra Promesa</h3>
             <h4 style="color: var(--red-vivid);">Lo que ves es lo que pagás</h4>
-            <p style="color: var(--text-muted); line-height: 1.6;">Desde el primer mensaje te decimos exactamente cuánto va a costar tu producto. Todo desglosado: artículo, flete y aranceles guatemaltecos. La confianza se construye desde la primera cotización.</p>
+            <p style="color: var(--text-muted); line-height: 1.6;">Desde el primer mensaje te decimos exactamente cuánto
+              va a costar tu producto. Todo desglosado: artículo, flete y aranceles guatemaltecos. La confianza se
+              construye desde la primera cotización.</p>
           </div>
         </div>
       </section>
 
       <!-- A quién servimos -->
       <section style="margin-bottom: 60px;">
-        <h2 class="section-heading" style="text-align: center;">¿A quién le servimos? <br><span style="color: var(--text-muted); font-size: 1.2rem; font-weight: 400;">Para todos los que quieren más</span></h2>
+        <h2 class="section-heading" style="text-align: center;">¿A quién le servimos? <br><span
+            style="color: var(--text-muted); font-size: 1.2rem; font-weight: 400;">Para todos los que quieren más</span>
+        </h2>
         <div class="audience-grid">
           <div class="audience-card">
             <span style="font-size: 2rem;">🛒</span>
             <h4>El comprador curioso</h4>
-            <p style="font-size: 0.9rem; color: var(--text-muted);">Encontraste algo en Amazon que no se consigue en Quetzaltenango. Nosotros lo traemos.</p>
+            <p style="font-size: 0.9rem; color: var(--text-muted);">Encontraste algo en Amazon que no se consigue en
+              Quetzaltenango. Nosotros lo traemos.</p>
           </div>
           <div class="audience-card">
             <span style="font-size: 2rem;">🎮</span>
             <h4>El gamer y el techero</h4>
-            <p style="font-size: 0.9rem; color: var(--text-muted);">Accesorios, componentes y gadgets que todavía no llegan al mercado local. Los traemos antes.</p>
+            <p style="font-size: 0.9rem; color: var(--text-muted);">Accesorios, componentes y gadgets que todavía no
+              llegan al mercado local. Los traemos antes.</p>
           </div>
           <div class="audience-card">
             <span style="font-size: 2rem;">👨‍👩‍👧</span>
             <h4>La familia quetzalteca</h4>
-            <p style="font-size: 0.9rem; color: var(--text-muted);">Hogar, ropa y juguetes. Al mejor precio, listo para retirar en Xela.</p>
+            <p style="font-size: 0.9rem; color: var(--text-muted);">Hogar, ropa y juguetes. Al mejor precio, listo para
+              retirar en Xela.</p>
           </div>
           <div class="audience-card">
             <span style="font-size: 2rem;">🏪</span>
             <h4>El emprendedor</h4>
-            <p style="font-size: 0.9rem; color: var(--text-muted);">Importá insumos o equipo para tu negocio con precios de volumen y gestión dedicada.</p>
+            <p style="font-size: 0.9rem; color: var(--text-muted);">Importá insumos o equipo para tu negocio con precios
+              de volumen y gestión dedicada.</p>
           </div>
         </div>
       </section>
 
       <!-- Canales de Contacto -->
       <div class="channels-bar">
-        <a href="https://wa.me/50240805665?text=Hola%20Importaciones%20GT%2C%20quiero%20cotizar%20un%20producto%20y%20recogerlo%20en%20Xela" target="_blank" class="channel-item" style="text-decoration: none;"><i class="fa-brands fa-whatsapp" style="color: #25D366;"></i> WhatsApp — Inmediato</a>
+        <a href="https://wa.me/50240805665?text=Hola%20Importaciones%20GT%2C%20quiero%20cotizar%20un%20producto%20y%20recogerlo%20en%20Xela"
+          target="_blank" class="channel-item" style="text-decoration: none;"><i class="fa-brands fa-whatsapp"
+            style="color: #25D366;"></i> WhatsApp — Inmediato</a>
         <div class="channel-item"><i class="fa-solid fa-globe" style="color: var(--blue-mid);"></i> Web — 24 horas</div>
-        <a href="https://maps.app.goo.gl/Fkr6GfQii3HE1jRP9" target="_blank" class="channel-item" style="text-decoration: none;"><i class="fa-solid fa-shop" style="color: var(--red-vivid);"></i> Retiro en tienda — Xela</a>
+        <a href="https://maps.app.goo.gl/Fkr6GfQii3HE1jRP9" target="_blank" class="channel-item"
+          style="text-decoration: none;"><i class="fa-solid fa-shop" style="color: var(--red-vivid);"></i> Retiro en
+          tienda — Xela</a>
       </div>
 
     </div>
@@ -1222,10 +1383,13 @@
   <section style="padding: 60px 6%; background: var(--off-white); text-align: center;">
     <div style="max-width: 1000px; margin: 0 auto;">
       <h2 class="section-heading">Del mundo a tus manos</h2>
-      <p style="color: var(--text-muted); margin-bottom: 30px;">Conoce nuestro proceso y la pasión que le ponemos a cada entrega en Quetzaltenango.</p>
-      
-      <div style="width: 100%; border-radius: var(--radius-xl); overflow: hidden; box-shadow: var(--shadow-lg); background: black; line-height: 0;">
-        <video controls autoplay muted loop playsinline style="width: 100%; display: block; aspect-ratio: 16/9; object-fit: cover;">
+      <p style="color: var(--text-muted); margin-bottom: 30px;">Conoce nuestro proceso y la pasión que le ponemos a cada
+        entrega en Quetzaltenango.</p>
+
+      <div
+        style="width: 100%; border-radius: var(--radius-xl); overflow: hidden; box-shadow: var(--shadow-lg); background: black; line-height: 0;">
+        <video autoplay muted loop playsinline disablePictureInPicture
+          style="width: 100%; display: block; aspect-ratio: 16/9; object-fit: cover;">
           <source src="ASSETS/VideoCentral.mp4" type="video/mp4">
           Tu navegador no soporta videos.
         </video>
@@ -1257,7 +1421,8 @@
       &copy; 2026 <strong>Importaciones GT</strong> — Hecho con orgullo en Quetzaltenango
       <span class="footer-flag">
         <span style="background:#3A6DB5; width:10px; height:16px; border-radius:2px; display:inline-block;"></span>
-        <span style="background:#fff; border:1px solid #ddd; width:10px; height:16px; border-radius:2px; display:inline-block;"></span>
+        <span
+          style="background:#fff; border:1px solid #ddd; width:10px; height:16px; border-radius:2px; display:inline-block;"></span>
         <span style="background:#C8102E; width:10px; height:16px; border-radius:2px; display:inline-block;"></span>
       </span>
     </p>

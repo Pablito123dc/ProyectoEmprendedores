@@ -54,6 +54,11 @@
 
   --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   --bounce: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+  /* Sombras Premium Glow */
+  --shadow-glow-red: rgba(200, 16, 46, 0.35);
+  --shadow-glow-blue: rgba(43, 93, 173, 0.35);
+  --gradient-premium: linear-gradient(135deg, var(--red-vivid), var(--blue-mid));
 }
 
 /* ─── Reset & Base ───────────────────────── */
@@ -433,8 +438,10 @@ body {
 
 .producto:hover {
   transform: translateY(-10px);
-  box-shadow: var(--shadow-hover);
-  border-color: var(--border-soft);
+  box-shadow: 
+    0 20px 40px -10px var(--shadow-glow-blue),
+    0 10px 20px -5px var(--shadow-glow-red);
+  border-color: var(--blue-mid);
 }
 
 .producto:hover::before {
@@ -1105,7 +1112,9 @@ body {
 
 .step-card:hover {
   transform: translateY(-6px);
-  box-shadow: var(--shadow-hover);
+  box-shadow: 
+    0 15px 30px -10px var(--shadow-glow-red),
+    0 10px 20px -5px var(--shadow-glow-blue);
 }
 
 .step-num {
