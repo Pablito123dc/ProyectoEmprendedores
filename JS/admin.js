@@ -1,5 +1,6 @@
 const API_KEY_RAINFOREST = "E4D41E73E3344211A706CC7F2A3A1C1F";
 const API_BASE = "https://api.rainforestapi.com/request";
+const LLAVE_MAESTRA = "GT2026"; // Esta es tu clave secreta para crear admins
 
 function mostrarVistaAdmin(vista) {
   document.getElementById("admin-productos").style.display = "none";
@@ -243,6 +244,100 @@ async function sincronizarOfertasAmazon() {
   }
 }
 
-window.onload = function() {
+// ── SEGURIDAD DE ADMINISTRADOR ──
+
+function mostrarRegistroAdmin(show) {
+  document.getElementById('admin-login-fields').style.display = show ? 'none' : 'block';
+  document.getElementById('admin-register-fields').style.display = show ? 'block' : 'none';
+}
+
+async function registrarNuevoAdmin() {
+  const nombre = document.getElementById('admin-reg-nombre').value;
+  const email = document.getElementById('admin-reg-email').value;
+  const pass = document.getElementById('admin-reg-pass').value;
+  const secret = document.getElementById('admin-reg-secret').value;
+
+  if (!nombre || !email || !pass || !secret) {
+    alert("Todos los campos son obligatorios.");
+    return;
+  }
+
+  if (secret !== LLAVE_MAESTRA) {
+    alert("CÓDIGO SECRETO INCORRECTO. No tienes permiso para crear cuentas de dueño.");
+    return;
+  }
+
+  try {
+    const exist = await db.collection('usuarios').where('correo', '==', email).get();
+    if (!exist.empty) {
+      alert("Ya existe un usuario con este correo.");
+      return;
+    }
+
+    const nuevoAdmin = {
+      nombre,
+      correo: email,
+      pass,
+      rol: 'admin',
+      id: Date.now()
+    };
+
+    await db.collection('usuarios').add(nuevoAdmin);
+    alert("¡Dueño registrado con éxito! Ahora puedes iniciar sesión.");
+    mostrarRegistroAdmin(false);
+  } catch (e) {
+    console.error(e);
+    alert("Error al registrar dueño.");
+  }
+}
+
+async function validarAccesoAdmin() {
+  const email = document.getElementById('admin-email').value;
+  const pass = document.getElementById('admin-pass').value;
+
+  if (!email || !pass) {
+    alert("Ingresa tus credenciales de dueño.");
+    return;
+  }
+
+  try {
+    const query = await db.collection('usuarios')
+      .where('correo', '==', email)
+      .where('pass', '==', pass)
+      .where('rol', '==', 'admin')
+      .get();
+
+    if (query.empty) {
+      alert("Credenciales incorrectas o no tienes permisos de dueño.");
+      return;
+    }
+
+    let user = null;
+    query.forEach(doc => user = doc.data());
+
+    localStorage.setItem("sesion_admin", JSON.stringify(user));
+    entrarAlPanel();
+  } catch (e) {
+    console.error(e);
+    alert("Error de conexión con el servidor.");
+  }
+}
+
+function entrarAlPanel() {
+  document.getElementById('admin-auth-barrier').style.display = 'none';
+  const content = document.getElementById('admin-content');
+  content.style.opacity = '1';
+  content.style.pointerEvents = 'auto';
   renderAdminProductos();
+}
+
+function verificarSesionAdmin() {
+  const sesion = JSON.parse(localStorage.getItem("sesion_admin"));
+  if (sesion && sesion.rol === 'admin') {
+    entrarAlPanel();
+  }
+}
+
+window.onload = function() {
+  verificarSesionAdmin();
 }

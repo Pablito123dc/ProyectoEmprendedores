@@ -47,7 +47,43 @@
     }
   </style>
 </head>
-<body>
+<body class="admin-body-locked">
+
+  <!-- 🔐 MURO DE SEGURIDAD (ADMIN LOGIN) -->
+  <div id="admin-auth-barrier" class="modal-overlay" style="display: flex; background: rgba(15, 23, 42, 0.98); backdrop-filter: blur(15px); z-index: 9999;">
+    <div class="modal-content" style="max-width: 400px; border: 1px solid rgba(255,255,255,0.1); background: #1E293B; color: white;">
+      <div style="text-align: center; margin-bottom: 25px;">
+        <div style="width: 80px; height: 80px; background: var(--blue-mid); border-radius: 20px; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px; font-size: 2rem;">
+          <i class="fa-solid fa-shield-halved"></i>
+        </div>
+        <h2 style="margin: 0; color: white;">Acceso Restringido</h2>
+        <p style="font-size: 0.9rem; color: #94A3B8; margin-top: 5px;">Solo personal autorizado de Importaciones GT</p>
+      </div>
+
+      <div id="admin-login-fields">
+        <input type="email" id="admin-email" placeholder="Correo del Administrador" style="width: 100%; margin-bottom: 12px; background: #0F172A; border: 1px solid #334155; color: white;">
+        <input type="password" id="admin-pass" placeholder="Contraseña Maestra" style="width: 100%; margin-bottom: 20px; background: #0F172A; border: 1px solid #334155; color: white;">
+        <button class="nav-btn active" style="width: 100%; height: 50px; justify-content: center; border-radius: 12px; background: var(--blue-mid);" onclick="validarAccesoAdmin()">
+          <i class="fa-solid fa-right-to-bracket"></i> Iniciar Sesión de Dueño
+        </button>
+        <p style="text-align: center; font-size: 0.8rem; margin-top: 15px; color: #64748B;">¿No tienes cuenta? <a href="#" onclick="mostrarRegistroAdmin(true)" style="color: var(--blue-mid); text-decoration: none;">Registrar nuevo Dueño</a></p>
+      </div>
+
+      <div id="admin-register-fields" style="display: none;">
+        <input type="text" id="admin-reg-nombre" placeholder="Nombre Completo" style="width: 100%; margin-bottom: 12px; background: #0F172A; border: 1px solid #334155; color: white;">
+        <input type="email" id="admin-reg-email" placeholder="Correo Electrónico" style="width: 100%; margin-bottom: 12px; background: #0F172A; border: 1px solid #334155; color: white;">
+        <input type="password" id="admin-reg-pass" placeholder="Crear Contraseña" style="width: 100%; margin-bottom: 12px; background: #0F172A; border: 1px solid #334155; color: white;">
+        <input type="password" id="admin-reg-secret" placeholder="CÓDIGO SECRETO DE DUEÑO" style="width: 100%; margin-bottom: 20px; background: #1E293B; border: 2px solid var(--red-vivid); color: var(--red-vivid); font-weight: 800; text-align: center;">
+        
+        <button class="nav-btn active" style="width: 100%; height: 50px; justify-content: center; border-radius: 12px; background: var(--red-vivid);" onclick="registrarNuevoAdmin()">
+          <i class="fa-solid fa-user-shield"></i> Dar de Alta como Dueño
+        </button>
+        <p style="text-align: center; font-size: 0.8rem; margin-top: 15px; color: #64748B;"><a href="#" onclick="mostrarRegistroAdmin(false)" style="color: #94A3B8; text-decoration: none;">Volver al Login</a></p>
+      </div>
+    </div>
+  </div>
+
+  <div id="admin-content" style="opacity: 0; pointer-events: none; transition: opacity 0.5s;">
 
   <header class="hero" style="background: linear-gradient(135deg, #0F172A 0%, #334155 100%);">
     <h1><i class="fa-solid fa-lock"></i> Panel de Administrador</h1>
@@ -105,15 +141,16 @@
       <button class="nav-btn active btn-delete" style="margin-bottom: 20px; border-radius: 12px;" onclick="vaciarTodosLosPedidos()"><i class="fa-solid fa-trash"></i> Eliminar Historial de Pedidos</button>
       <div id="lista-admin-pedidos" class="grid-layout"></div>
     </section>
-  </main>
+  </div>
 
   <script src="https://www.gstatic.com/firebasejs/10.8.1/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore-compat.js"></script>
   <script src="JS/firebase-config.js"></script>
-
+  <script src="JS/auth.js"></script>
   <script src="JS/productos.js"></script>
   <script src="JS/pedidos.js"></script>
   <script src="JS/admin.js"></script>
 
 </body>
 </html>
+

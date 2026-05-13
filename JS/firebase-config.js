@@ -1,11 +1,11 @@
 const firebaseConfig = {
-  apiKey: "AIzaSyChEJpXOZeo9vEwpo5G8u_wyFvfys58Zsg",
-  authDomain: "proyecto1-82852.firebaseapp.com",
-  projectId: "proyecto1-82852",
-  storageBucket: "proyecto1-82852.firebasestorage.app",
-  messagingSenderId: "841105504907",
-  appId: "1:841105504907:web:4b396ca21d6c7a2c7df28e",
-  measurementId: "G-YNNPECWJD9"
+  apiKey: "AIzaSyAPr9Dwy5DI-HBMDzYSrtiLADjVtGwscuQ",
+  authDomain: "proyecto-87089.firebaseapp.com",
+  projectId: "proyecto-87089",
+  storageBucket: "proyecto-87089.firebasestorage.app",
+  messagingSenderId: "106263965426",
+  appId: "1:106263965426:web:4e1546e641281a49c7ea6b",
+  measurementId: "G-TB3BYYDGSP"
 };
 
 // Inicializar Firebase
