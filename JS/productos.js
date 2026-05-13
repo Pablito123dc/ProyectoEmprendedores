@@ -33,42 +33,62 @@ async function renderizarProductos(contenedorId, soloOfertas = false) {
   const contenedor = document.getElementById(contenedorId);
   if (!contenedor) return;
 
-  contenedor.innerHTML = '<div style="grid-column: 1/-1; text-align: center; padding: 50px;"><i class="fa-solid fa-circle-notch fa-spin fa-2x"></i></div>';
+  contenedor.innerHTML = '<div style="grid-column: 1/-1; text-align: center; padding: 50px;"><i class="fa-solid fa-circle-notch fa-spin fa-2x" style="color: var(--blue-mid);"></i></div>';
 
-  const ofertas = await obtenerOfertas();
-  let productos = [];
-  
-  if (!soloOfertas) {
-    const manuales = await obtenerProductos();
-    productos = [...manuales, ...ofertas];
-  } else {
-    productos = ofertas;
+  try {
+    let productos = [];
+    
+    if (!soloOfertas) {
+      // Cargar productos manuales del admin
+      const snapProductos = await db.collection('productos').get();
+      snapProductos.forEach(doc => productos.push({ firebaseId: doc.id, ...doc.data() }));
+    }
+
+    // Cargar tendencias (solicitudes de clientes)
+    const snapTendencias = await db.collection('tendencias')
+      .orderBy('solicitudes', 'desc')
+      .limit(8)
+      .get();
+    snapTendencias.forEach(doc => productos.push({ 
+      firebaseId: doc.id, ...doc.data(), esTendencia: true 
+    }));
+
+    if (productos.length === 0) {
+      contenedor.innerHTML = '<div style="grid-column: 1/-1; text-align: center; padding: 50px; color: #64748B;"><i class="fa-solid fa-box-open fa-3x" style="margin-bottom: 20px;"></i><br>No hay productos disponibles aún.</div>';
+      return;
+    }
+
+    contenedor.innerHTML = "";
+    productos.forEach(p => {
+      const card = document.createElement('div');
+      card.className = 'producto';
+      const badge = p.esTendencia 
+        ? `<span style="background: var(--blue-mid); color: white; padding: 4px 8px; border-radius: 4px; font-size: 0.7rem; font-weight: 800; position: absolute; top: 10px; left: 10px; z-index: 5;">🔥 ${p.solicitudes || 1} solicitud${(p.solicitudes||1) > 1 ? 'es' : ''}</span>`
+        : '';
+      const imgSrc = p.imagen || p.imagenVirtual || 'ASSETS/imagenilustrativa.jpg';
+      const linkBtn = p.esLinkEspecial && p.url
+        ? `<a href="${p.url}" target="_blank" class="nav-btn active" style="width: 100%; justify-content: center; text-decoration: none; background: var(--blue-mid); color: white;"><i class="fa-solid fa-arrow-up-right-from-square"></i> Ver en Amazon</a>`
+        : `<button class="nav-btn active" style="width: 100%; justify-content: center;" onclick="agregarAlCarrito(${p.id})"><i class="fa-solid fa-cart-plus"></i> Añadir al Carrito</button>`;
+      
+      card.innerHTML = `
+        ${badge}
+        <img src="${imgSrc}" alt="${p.nombre}" onerror="this.src='ASSETS/imagenilustrativa.jpg'">
+        <div class="producto-info">
+          <h3>${p.nombre}</h3>
+          <p style="font-size: 1.2rem; font-weight: 800; color: var(--blue-mid); margin-bottom: 15px;">${p.precio > 0 ? 'Q' + p.precio : 'Precio a cotizar'}</p>
+          ${linkBtn}
+        </div>
+      `;
+      card.style.position = 'relative';
+      contenedor.appendChild(card);
+    });
+
+  } catch(e) {
+    console.error("Error cargando productos:", e);
+    contenedor.innerHTML = '<div style="grid-column: 1/-1; text-align: center; padding: 30px; color: #EF4444;">Error al cargar los productos. Verifica tu conexión.</div>';
   }
-
-  if (productos.length === 0) {
-    contenedor.innerHTML = '<div style="grid-column: 1/-1; text-align: center; padding: 50px; color: #64748B;">No hay productos disponibles en este momento.</div>';
-    return;
-  }
-
-  contenedor.innerHTML = "";
-  productos.forEach(p => {
-    const card = document.createElement('div');
-    card.className = 'producto';
-    card.innerHTML = `
-      ${p.esOferta ? '<span class="tag-oferta" style="background: var(--red-vivid); color: white; padding: 4px 8px; border-radius: 4px; font-size: 0.7rem; font-weight: 800; position: absolute; top: 10px; left: 10px; z-index: 5;">OFERTA GLOBAL</span>' : ''}
-      <img src="${p.imagen || 'ASSETS/imagenilustrativa.jpg'}" alt="${p.nombre}">
-      <div class="producto-info" style="padding: 15px;">
-        <h3 style="font-size: 1rem; margin-bottom: 10px; height: 40px; overflow: hidden;">${p.nombre}</h3>
-        <p style="font-size: 1.2rem; font-weight: 800; color: var(--blue-mid); margin-bottom: 15px;">Q${p.precio}</p>
-        <button class="nav-btn active" style="width: 100%; justify-content: center;" onclick="agregarAlCarrito(${p.id}, '${p.nombre.replace(/'/g, "\\'")}', ${p.precio}, '${p.imagen}')">
-          <i class="fa-solid fa-cart-plus"></i> Añadir al Carrito
-        </button>
-      </div>
-    `;
-    card.style.position = 'relative';
-    contenedor.appendChild(card);
-  });
 }
+
 
 // Para compatibilidad con tienda.html
 async function mostrarProductos() {

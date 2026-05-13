@@ -94,6 +94,16 @@ async function solicitarCotizacionLink() {
         imagenVirtual: productImage
       };
 
+      // 4. ✨ Guardar automáticamente como TENDENCIA en Firebase
+      guardarTendencia({
+        nombre: productTitle.split(' ').slice(0, 6).join(' '),
+        imagen: productImage,
+        url: url,
+        precio: 0,
+        descripcion: "Producto solicitado por clientes de Importaciones GT",
+        esLinkEspecial: true
+      });
+
     } catch (error) {
       console.error(error);
       alert("Lo siento, el robot está cansado o el link no es compatible. Inténtalo de nuevo o agrega el producto manualmente.");
@@ -113,9 +123,21 @@ function confirmarAgregadoAlCarritoDeCotizacion() {
   carrito.push(cotizacionPendiente);
   guardarCarrito(carrito);
 
+  // Guardar cotización en Firebase bajo el usuario
+  const usuario = typeof obtenerUsuarioActual === 'function' ? obtenerUsuarioActual() : null;
+  if (usuario && typeof db !== 'undefined') {
+    db.collection('cotizaciones').add({
+      usuarioId: usuario.id,
+      usuarioNombre: usuario.nombre,
+      usuarioCorreo: usuario.correo,
+      producto: cotizacionPendiente,
+      fecha: new Date().toISOString(),
+      estado: 'pendiente'
+    }).catch(e => console.warn('No se guardó cotización en nube:', e.message));
+  }
+
   alert("¡Producto añadido al carrito para cotización oficial!");
   
-  // Limpiar
   document.getElementById("link-cotizacion").value = "";
   document.getElementById("preview-container").style.display = 'none';
   cotizacionPendiente = null;
@@ -184,4 +206,41 @@ function eliminarItem(index) {
 function vaciarCarrito() {
   localStorage.removeItem(DB_CARRITO);
   mostrarCarrito();
+}
+
+// ── Guardar producto como TENDENCIA en Firebase ──
+async function guardarTendencia(producto) {
+  try {
+    if (typeof db === 'undefined') return;
+
+    // Evitar duplicados: si el mismo URL ya existe, solo suma una solicitud
+    const existe = await db.collection('tendencias')
+      .where('url', '==', producto.url)
+      .get();
+
+    if (!existe.empty) {
+      const docId = existe.docs[0].id;
+      const solicitudes = (existe.docs[0].data().solicitudes || 1) + 1;
+      await db.collection('tendencias').doc(docId).update({
+        solicitudes: solicitudes,
+        ultimaSolicitud: new Date().toISOString()
+      });
+      console.log("Tendencia actualizada:", producto.nombre, "| Solicitudes:", solicitudes);
+    } else {
+      await db.collection('tendencias').add({
+        id: Date.now(),
+        nombre: producto.nombre,
+        imagen: producto.imagen,
+        url: producto.url,
+        precio: 0,
+        descripcion: "Producto solicitado por clientes de Importaciones GT",
+        esLinkEspecial: true,
+        solicitudes: 1,
+        fechaPrimera: new Date().toISOString()
+      });
+      console.log("Nueva tendencia guardada:", producto.nombre);
+    }
+  } catch(e) {
+    console.warn("No se pudo guardar tendencia:", e.message);
+  }
 }
