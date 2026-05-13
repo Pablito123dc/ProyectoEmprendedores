@@ -213,6 +213,10 @@ async function guardarTendencia(producto) {
   try {
     if (typeof db === 'undefined') return;
 
+    // Obtener nombre del usuario actual si existe
+    const usuario = typeof obtenerUsuarioActual === 'function' ? obtenerUsuarioActual() : null;
+    const nombreUsuario = usuario ? usuario.nombre : 'Un cliente';
+
     // Evitar duplicados: si el mismo URL ya existe, solo suma una solicitud
     const existe = await db.collection('tendencias')
       .where('url', '==', producto.url)
@@ -223,6 +227,7 @@ async function guardarTendencia(producto) {
       const solicitudes = (existe.docs[0].data().solicitudes || 1) + 1;
       await db.collection('tendencias').doc(docId).update({
         solicitudes: solicitudes,
+        ultimoUsuario: nombreUsuario,
         ultimaSolicitud: new Date().toISOString()
       });
       console.log("Tendencia actualizada:", producto.nombre, "| Solicitudes:", solicitudes);
@@ -236,6 +241,8 @@ async function guardarTendencia(producto) {
         descripcion: "Producto solicitado por clientes de Importaciones GT",
         esLinkEspecial: true,
         solicitudes: 1,
+        primerUsuario: nombreUsuario,
+        ultimoUsuario: nombreUsuario,
         fechaPrimera: new Date().toISOString()
       });
       console.log("Nueva tendencia guardada:", producto.nombre);

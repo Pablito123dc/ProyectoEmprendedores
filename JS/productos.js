@@ -63,7 +63,8 @@ async function renderizarProductos(contenedorId, soloOfertas = false) {
       const card = document.createElement('div');
       card.className = 'producto';
       const badge = p.esTendencia 
-        ? `<span style="background: var(--blue-mid); color: white; padding: 4px 8px; border-radius: 4px; font-size: 0.7rem; font-weight: 800; position: absolute; top: 10px; left: 10px; z-index: 5;">🔥 ${p.solicitudes || 1} solicitud${(p.solicitudes||1) > 1 ? 'es' : ''}</span>`
+        ? `<span style="background: var(--blue-mid); color: white; padding: 4px 10px; border-radius: 4px; font-size: 0.7rem; font-weight: 800; position: absolute; top: 10px; left: 10px; z-index: 5;">\uD83D\uDD25 ${p.solicitudes || 1} solicitud${(p.solicitudes||1) > 1 ? 'es' : ''}</span>
+          <span style="background: rgba(0,0,0,0.55); color: white; padding: 3px 8px; border-radius: 4px; font-size: 0.68rem; position: absolute; top: 38px; left: 10px; z-index: 5; max-width: calc(100% - 20px); overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">\uD83D\uDC64 ${p.ultimoUsuario || p.primerUsuario || 'Un cliente'}</span>`
         : '';
       const imgSrc = p.imagen || p.imagenVirtual || 'ASSETS/imagenilustrativa.jpg';
       const linkBtn = p.esLinkEspecial && p.url
