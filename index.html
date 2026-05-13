@@ -1156,6 +1156,35 @@
     </div>
   </section>
 
+  <!-- ── NUEVA SECCIÓN: OFERTAS INTERNACIONALES (DINÁMICA) ── -->
+  <section id="seccion-ofertas-home" style="background: var(--off-white); padding: 80px 6%;">
+    <div style="max-width: 1200px; margin: 0 auto;">
+      <div
+        style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 40px; flex-wrap: wrap; gap: 20px;">
+        <div>
+          <div class="section-label" style="background: var(--red-vivid); color: white;"><i
+              class="fa-solid fa-fire"></i> Lo más buscado en el mundo</div>
+          <h2 class="section-heading" style="margin: 0; text-align: left;">Sincronizado desde Amazon</h2>
+          <p style="color: var(--text-muted); margin-top: 10px; font-size: 1.1rem;">Productos destacados con precio
+            final a Guatemala (incluye flete e impuestos).</p>
+        </div>
+        <a href="tienda.html" class="btn-hero-primary"
+          style="padding: 12px 25px; font-size: 0.9rem; background: var(--blue-mid);">Ver Catálogo Completo <i
+            class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <!-- Contenedor donde productos.js inyectará las ofertas -->
+      <div id="contenedor-ofertas-home" class="grid-layout"
+        style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 30px;">
+        <!-- Se llenará automáticamente -->
+        <div style="grid-column: 1/-1; text-align: center; padding: 50px; color: var(--text-muted);">
+          <i class="fa-solid fa-circle-notch fa-spin fa-3x" style="margin-bottom: 20px; color: var(--blue-mid);"></i>
+          <p>Conectando con centros logísticos...</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Banner de Marcas (Slider - Reubicado abajo de Cómo funciona) -->
   <section class="brands-banner-container">
     <div class="brands-banner-inner">
@@ -1432,6 +1461,20 @@
   <a href="https://wa.me/50240805665" target="_blank" class="whatsapp-float" title="Chateá con nosotros">
     <i class="fa-brands fa-whatsapp"></i>
   </a>
+
+  <!-- Firebase y Lógica de Productos -->
+  <script src="https://www.gstatic.com/firebasejs/10.8.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore-compat.js"></script>
+  <script src="JS/firebase-config.js"></script>
+  <script src="JS/productos.js"></script>
+  <script>
+    // Inicializar la carga de ofertas en el Home
+    window.addEventListener('load', () => {
+      if (typeof renderizarProductos === 'function') {
+        renderizarProductos('contenedor-ofertas-home', true); // Solo ofertas
+      }
+    });
+  </script>
 
   <script>
     let currentSlide = 0;
